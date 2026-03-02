@@ -1,5 +1,7 @@
 # Ghost Prompt RAG for Code Generation
 
+> **Under Development**: Code may change. Anyone can run the demo [demo.ipynb](demo.ipynb) on Kaggle as it is with the dataset. But notice that implementation may change, not so the objective of improving performance.
+
 Adaptive RAG experiment that injects “ghost” prompts mid-generation when token-level entropy spikes. Retrieval combines BM25 + dense embeddings with Reciprocal Rank Fusion, then evaluates against HumanEval.
 
 ## Quickstart
@@ -23,4 +25,4 @@ Adaptive RAG experiment that injects “ghost” prompts mid-generation when tok
 - Analysis helpers render pass/fail breakdowns and side-by-side code comparisons inside the notebook.
 
 ## Hardware Recommendations
-- This project was originally tested on two T4 GPUs using Python 3.12.12 in a Kaggle.
+- This project was originally tested on two T4 GPUs using Python 3.12.12 on Kaggle.
