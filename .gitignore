@@ -3,6 +3,7 @@
 venv/
 __pycache__/
 *.pyc
+.github
 
 .ipynb_checkpoints/
 *.csv
