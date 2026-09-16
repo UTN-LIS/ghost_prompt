@@ -1,0 +1,67 @@
+{
+  "exploratory": true,
+  "tests": "HumanEval base",
+  "summary": {
+    "semantic_lookahead": {
+      "recovered": 10,
+      "total": 20,
+      "rate": 0.5
+    },
+    "entropy": {
+      "recovered": 10,
+      "total": 20,
+      "rate": 0.5
+    },
+    "probability_margin": {
+      "recovered": 10,
+      "total": 20,
+      "rate": 0.5
+    },
+    "random": {
+      "recovered": 6,
+      "total": 20,
+      "rate": 0.3
+    },
+    "hybrid_50_50": {
+      "recovered": 10,
+      "total": 20,
+      "rate": 0.5
+    }
+  },
+  "paired_comparisons": {
+    "semantic_lookahead": {
+      "hybrid_only": [
+        "HumanEval/95"
+      ],
+      "comparator_only": [
+        "HumanEval/121"
+      ]
+    },
+    "entropy": {
+      "hybrid_only": [],
+      "comparator_only": []
+    },
+    "probability_margin": {
+      "hybrid_only": [],
+      "comparator_only": []
+    },
+    "random": {
+      "hybrid_only": [
+        "HumanEval/141",
+        "HumanEval/142",
+        "HumanEval/154",
+        "HumanEval/81"
+      ],
+      "comparator_only": []
+    }
+  },
+  "semantic_only_vs_entropy": [
+    "HumanEval/121"
+  ],
+  "entropy_only_vs_semantic": [
+    "HumanEval/95"
+  ],
+  "incremental_new_branches": 21,
+  "incremental_generation_seconds": 102.5459720380004,
+  "cost_note": "Costo incremental del ensayo, no costo total del selector. Reutiliza lookaheads y ramas anteriores."
+}

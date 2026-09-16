@@ -1,0 +1,220 @@
+﻿Colab link, resultados y experimentos en carpeta V1
+NotebookLM con documentacion para hacer preguntas: NotebookLM
+Resumen de resultados:
+Se evaluaron 5 métodos de generación de código sobre HumanEval (120 muestras, 40 tareas) usando el modelo Qwen2.5-Coder-1.5B-Instruct.
+
+
+Método
+	pass@1
+	valid_rate
+	activation_rate
+	B0_baseline
+	80.8%
+	100%
+	0%
+	B1_static_rag
+	60.8%
+	95.8%
+	95%
+	A1_rewind_rag
+	5.0%
+	30.8%
+	92.5%
+	V1_adaptive_rag
+	5.0%
+	10.0%
+	92.5%
+	B2_entropy_rag
+	0.0%
+	2.5%
+	95%
+	(más detallado en el notebook)
+Columnas:
+* Metodos: metodos de generacion
+   * B2_entropy_rag: RAG disparado por entropía. Primero genera normalmente midiendo la incertidumbre token a token. Si la entropía promedio supera un umbral (2.5), interrumpe, recupera contexto, y vuelve a generar desde el punto de mayor incertidumbre.
+   * V1_adaptive_rag: RAG de dos etapas. Igual que B2 pero agrega un segundo filtro: después de decidir que la entropía es alta, evalúa si el documento recuperado es realmente relevante para la tarea. Solo interviene si ambas condiciones se cumplen.
+   * A1_rewind_rag: Igual que V1 pero con rewind. Cuando decide intervenir, en lugar de continuar desde el punto de alta entropía, retrocede N tokens (rewind_tokens=8) y regenera desde ahí con el contexto nuevo. La idea es "deshacer" tokens potencialmente erróneos antes de la corrección.
+* pass@1: Probabilidad de que la solución generada pase todos los tests en el primer intento. 
+* valid_rate: Proporción de respuestas que son código sintácticamente válido. Un valid_rate bajo indica que el modelo ni siquiera genera código coherente.
+* activation_rate:Qué tan seguido se activa el mecanismo RAG. 
+
+
+Diagramas de flujo:
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+Notas: 
+* V1 se va a dejar de usar. 
+* Se va a leer trabajos donde usan la seg derivada de la entropía y donde analizan en frecuencia
+* Se toman resultados de v1 para mejorar
+* GitHub queda desactualizado hasta tener mejoras
+* Problema notorio: se disparo muy seguido el rag
+* Se corre v1 de nuevo con mod en umbral 
+
+
+Se probó 2 y 2 no se pudo resolver nada ni basemodel sd evalúa bajar dificultad subir modelo y corregir para mantener 
+
+
+El rag no mejora, se pasa directamente a alguno ya probado 
+
+
+
+
+
+
+
+
+Donde?
+Nuevas var
+jueves
+1. Posible error en el cálculo de la entropía. Ya que pueden definirse distintos nombres de var mismo significado. Introsucir semantic_entropy (This technique operates by grouping the generated responses into semantically equivalent clusters and estimating uncertainty across these clusters instead.)Kuhn, L., Gal, Y., Farquhar, S.: Semantic uncertainty: Linguistic invariances for uncertainty estimation in natural language generation. In: The Eleventh International Conference on Learning Representations
+
+
+
+
+2. Medir dependencia
+
+
+* Mbpp y human eval distintos, probablemente te den diferentes 
+
+
+3. Aplicar o no softmax
+
+
+Se implemento a) 
+* En vez de hacer como se suele proponer con un promedio o viendo la distancia a la cual están las palabras se aprovecha q es código y se busca similitud en el caso de escribirse de igual forma el ast al menos debería decir q es equivalente. Su usa Tree-sitter.
+
+
+* El script realiza detalladamente las siguientes acciones divididas en tres etapas lógicas:
+
+
+* Para no ejecutar todo de nuevo se toman los  25 Fallos: Casos donde el modelo generó código erróneo (passed == False).y los 13 Éxitos Inseguros (Falsos Positivos): Casos donde el código pasó los tests unitarios, pero el modelo experimentó caídas severas en su confianza general (seleccionados ordenando por el min margin más bajo).
+
+
+* A medida que el modelo genera cada token individual,cuando hay mas margen q un umbral  se pasa de nuevo a “palabras” de lo generado hasta el momento los dos mas propensos (Podrian ser mas y separar por umbral? Al q si difiera?) para reconstruir la sintaxis, concatenar hasta ese momento y comparar por ejemplo si es i o idx LEXICAL_FALSE_ALARMes lo mismo pero si es un operador + o - cambia y otra alerta CRITICAL_EPISTEMIC. ¿Se podria entrenar para poner un umbral?
+* El tipo exacto de estructura de Python en la que se generó (ast_node).
+* La clasificación semántica de su riesgo (risk_class).
+* Este archivo te dará la evidencia empírica cuantitativa necesaria para justificar formalmente tu modelo de Early Exit Semántico, permitiéndote demostrar en tu publicación qué porcentaje de las caídas de confianza del modelo corresponden a simples dudas tipográficas frente a errores de lógica computacional.
+
+
+jueves
+1. Maquinas de autómatas finitos
+
+
+
+
+
+
+
+
+
+
+
+
+Análisis 25 (Pendiente ME, análisis profundizado con AST y ramificación)
+Problemas analizados:
+* HumanEval/26
+* HumanEval/38
+* HumanEval/93
+* HumanEval/129
+* HumanEval/132
+* HumanEval/141
+* HumanEval/31
+* HumanEval/124
+Los primeros seis fueron fallos. Los últimos dos eran soluciones correctas con incertidumbre alta, usados como controles difíciles. La idea es comparar:
+* Casos donde el baseline falla.
+* Casos donde parecía riesgoso pero aun así pasa.
+Metodología de Análisis
+Generación del baseline token por token (greedy). En cada paso, el modelo produce una distribución de probabilidad sobre todo el vocabulario. La celda conserva:
+* Token top-1 y top-2.
+* Probabilidad top-1 y top-2.
+* Margen, entropía, log-risk y EMA de log-risk.
+Selección de puntos de bifurcación:
+Se seleccionan tres posiciones por problema que cumplan:
+* Probabilidad top-2 al menos 0.01.
+* El top-1 y top-2 no son whitespace, Markdown fence o token especial.
+* Puntos separados por al menos 12 tokens (para elegir puntos de incertidumbre persistente y evitar redundancia).
+Ramificación de la generación (top-1 vs top-2): Es una intervención contrafactual: "Manteniendo idéntico el pasado, ¿qué pasa si en este punto elijo la segunda opción más probable?". Continúa greedy desde cada rama hasta completar el código.
+Extracción de código:
+* Elimina fences Markdown y explicaciones posteriores.
+* Busca la función objetivo y conserva imports si aparecen antes de la función.
+Evaluación y Métricas
+Evaluación con HumanEval
+* 0: Ambas ramas pasan o ambas fallan.
+* 1: El token elegido cambia el resultado funcional.
+Divergencia de tokens
+Compara los siguientes 32 tokens de ambas ramas (cercano a 0: igual; cercano a 1: separación inmediata).
+Divergencia estructural (AST):
+ast.parse(code) para cada rama guardando: si parsea, cantidad de nodos, y tipos presentes. Distancia aproximada: D_AST = 0.7 * D_Jaccard + 0.3 * D_size.
+  
+
+Causal Criticality:
+Score exploratorio: C_t = M_t * (0.35 * D_token + 0.35 * D_AST + 0.30 * D_exec) Donde M_t es incertidumbre persistente. Un punto tiene criticidad alta cuando el modelo estaba persistentemente incierto, top-1 y top-2 generan código diferente, las estructuras difieren, y una rama pasa mientras la otra falla.
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+Avances en: https://www.kaggle.com/code/matiasss/experiments
+
+
+Para un problema que fallaba de Humaneval se agarraba la rama original y se bifurcó en Top dos a partir de esa en cada generación entonces quedó el primer toquen más el segundo y su bifurcación el tercero más su bifurcación y así todos a partir del original de esa ejecución quedaron 49 ramas de las cuales tres pasaron los Test 
+
+
+
+
+Experimento
+	Resultado
+	HumanEval/26 exhaustivo
+	3 recuperaciones / 49 posiciones
+	Entropía top-5 en HE/26
+	0 de 3
+	Margen top-5 en HE/26
+	0 de 3
+	Semántico top-5 en HE/26
+	2 de 3
+	Semántico top-10 en HE/26
+	3 de 3
+	
+
+
+
+Persistencia: mide cuánto tiempo la rama continúa siendo diferente después del token forzado. No cuenta el primer token porque fue cambiado intencionalmente.
+Divergencia semántica ponderada: diferencia cambios importantes de cambios cosméticos. Operadores, palabras reservadas y literales pesan más; espacios o renombres pesan menos.
+Anchors de código: comprueba si cambiaron elementos estructuralmente relevantes como llamadas, métodos, operadores o números.
+
+
+
+
+
+
+Hay un solo caso en el q pasa (tito)
+        Extencion de lo previo, q puede ser igaul pero queda desfasado
+
+
+Hola, mi nombre es matias, como estas? -> ok
+Hola, miiiii nombre es matias como estas? -> ok 
+Pero pueden ser diferentes  y seria invalido
+
+
+Correr ventana -15? O podria ser -14 por ejmplo  (esto se debe a q hasta q punto vale?)

@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "entropy_weight": 0.5,
+  "semantic_weight": 0.5,
+  "budget": 5,
+  "task_ids": [
+    "HumanEval/140",
+    "HumanEval/93",
+    "HumanEval/10",
+    "HumanEval/77",
+    "HumanEval/141",
+    "HumanEval/154",
+    "HumanEval/50",
+    "HumanEval/145",
+    "HumanEval/163",
+    "HumanEval/81",
+    "HumanEval/130",
+    "HumanEval/121",
+    "HumanEval/38",
+    "HumanEval/127",
+    "HumanEval/142",
+    "HumanEval/32",
+    "HumanEval/137",
+    "HumanEval/33",
+    "HumanEval/65",
+    "HumanEval/95"
+  ],
+  "exploratory": true,
+  "source_sha256": {
+    "metadata.json": "5493debe047297376d00982b116c30f441b5c631417f793a052bd0615b5a3ef0",
+    "validation_report.json": "b270e69c12c6b79e1887cc6d60947a5acddf153bdc60aa395de14a28e4ba6bec",
+    "baselines.jsonl": "27175c85cf228971aa493a84d7b6e999ac46cf5ba1623f44605e0c7bac357701",
+    "lookaheads.jsonl": "ff4d59d5af92f0654ebe232d45564df3227a261783c52ed9242c56132904a04a",
+    "selections.jsonl": "e2c1b2d83f7a74116cf73e913bb292179b8fba8f342c35cdd83b222744f3951f",
+    "branches.jsonl": "4edddc2d899cbc9b711b14fac1e6ea2f959d85e3bc0be0ebe64f115e168e4dae"
+  }
+}

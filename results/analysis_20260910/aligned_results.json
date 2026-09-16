@@ -1,0 +1,425 @@
+{
+  "audit": {
+    "positions": 1649,
+    "tasks": 20,
+    "branches": 100,
+    "selections": 20,
+    "position_duplicates": 0,
+    "branch_duplicates": 0,
+    "selected_positions": 100,
+    "reused_branches": 73,
+    "new_branches": 27,
+    "score_max_abs_error": 0.003443526170798905,
+    "score_rows_different_at_1e_12": 10,
+    "computed_overlap_mean": 3.35
+  },
+  "summary": {
+    "recovered": 10,
+    "rate": 0.5,
+    "wilson95": [
+      0.2992980081982123,
+      0.7007019918017877
+    ],
+    "passing_branches": 17,
+    "branch_precision": 0.17,
+    "branch_precision_cluster_bootstrap95": [
+      0.09,
+      0.26000000000000006
+    ],
+    "reused": 73,
+    "newly_generated": 27,
+    "generation_seconds_recorded": 370.4528477650008,
+    "new_generation_seconds_recorded": 122.29309204600008
+  },
+  "comparisons": {
+    "aligned_vs_old_semantic": {
+      "a_only": 0,
+      "b_only": 0,
+      "both": 10,
+      "neither": 10,
+      "difference": 0.0,
+      "bootstrap95": [
+        0.0,
+        0.0
+      ],
+      "p_exact": 1.0
+    },
+    "aligned_vs_entropy": {
+      "a_only": 1,
+      "b_only": 1,
+      "both": 9,
+      "neither": 9,
+      "difference": 0.0,
+      "bootstrap95": [
+        -0.15,
+        0.15
+      ],
+      "p_exact": 1.0,
+      "p_holm_3": 1.0
+    },
+    "aligned_vs_probability_margin": {
+      "a_only": 1,
+      "b_only": 1,
+      "both": 9,
+      "neither": 9,
+      "difference": 0.0,
+      "bootstrap95": [
+        -0.15,
+        0.15
+      ],
+      "p_exact": 1.0,
+      "p_holm_3": 1.0
+    },
+    "aligned_vs_random": {
+      "a_only": 5,
+      "b_only": 1,
+      "both": 5,
+      "neither": 9,
+      "difference": 0.2,
+      "bootstrap95": [
+        0.0,
+        0.45
+      ],
+      "p_exact": 0.21875,
+      "p_holm_3": 0.65625
+    }
+  },
+  "same_recovered_tasks_as_old": true,
+  "old_semantic_recovered": 10,
+  "curve": [
+    {
+      "k": 1,
+      "recovered": 4,
+      "rate": 0.2,
+      "wilson95": [
+        0.08065766257979806,
+        0.41601743225189364
+      ]
+    },
+    {
+      "k": 2,
+      "recovered": 6,
+      "rate": 0.3,
+      "wilson95": [
+        0.1454772448676043,
+        0.5189728183535235
+      ]
+    },
+    {
+      "k": 3,
+      "recovered": 8,
+      "rate": 0.4,
+      "wilson95": [
+        0.21880653237281705,
+        0.6134184992377469
+      ]
+    },
+    {
+      "k": 4,
+      "recovered": 8,
+      "rate": 0.4,
+      "wilson95": [
+        0.21880653237281705,
+        0.6134184992377469
+      ]
+    },
+    {
+      "k": 5,
+      "recovered": 10,
+      "rate": 0.5,
+      "wilson95": [
+        0.2992980081982123,
+        0.7007019918017877
+      ]
+    }
+  ],
+  "overlap": {
+    "total_intersection": 67,
+    "mean_per_task": 3.35,
+    "mean_jaccard": 0.530952380952381,
+    "details": [
+      {
+        "task_id": "HumanEval/140",
+        "intersection": 4,
+        "jaccard": 0.6666666666666666,
+        "new_positions": [
+          2
+        ],
+        "dropped_positions": [
+          4
+        ]
+      },
+      {
+        "task_id": "HumanEval/93",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          11,
+          81
+        ],
+        "dropped_positions": [
+          64,
+          65
+        ]
+      },
+      {
+        "task_id": "HumanEval/10",
+        "intersection": 4,
+        "jaccard": 0.6666666666666666,
+        "new_positions": [
+          48
+        ],
+        "dropped_positions": [
+          15
+        ]
+      },
+      {
+        "task_id": "HumanEval/77",
+        "intersection": 4,
+        "jaccard": 0.6666666666666666,
+        "new_positions": [
+          14
+        ],
+        "dropped_positions": [
+          11
+        ]
+      },
+      {
+        "task_id": "HumanEval/141",
+        "intersection": 4,
+        "jaccard": 0.6666666666666666,
+        "new_positions": [
+          12
+        ],
+        "dropped_positions": [
+          26
+        ]
+      },
+      {
+        "task_id": "HumanEval/154",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          4,
+          9
+        ],
+        "dropped_positions": [
+          13,
+          21
+        ]
+      },
+      {
+        "task_id": "HumanEval/50",
+        "intersection": 4,
+        "jaccard": 0.6666666666666666,
+        "new_positions": [
+          10
+        ],
+        "dropped_positions": [
+          35
+        ]
+      },
+      {
+        "task_id": "HumanEval/145",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          8,
+          17
+        ],
+        "dropped_positions": [
+          12,
+          18
+        ]
+      },
+      {
+        "task_id": "HumanEval/163",
+        "intersection": 4,
+        "jaccard": 0.6666666666666666,
+        "new_positions": [
+          5
+        ],
+        "dropped_positions": [
+          25
+        ]
+      },
+      {
+        "task_id": "HumanEval/81",
+        "intersection": 5,
+        "jaccard": 1.0,
+        "new_positions": [],
+        "dropped_positions": []
+      },
+      {
+        "task_id": "HumanEval/130",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          57,
+          58
+        ],
+        "dropped_positions": [
+          70,
+          112
+        ]
+      },
+      {
+        "task_id": "HumanEval/121",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          7,
+          8
+        ],
+        "dropped_positions": [
+          3,
+          12
+        ]
+      },
+      {
+        "task_id": "HumanEval/38",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          8,
+          80
+        ],
+        "dropped_positions": [
+          46,
+          109
+        ]
+      },
+      {
+        "task_id": "HumanEval/127",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          61,
+          73
+        ],
+        "dropped_positions": [
+          33,
+          66
+        ]
+      },
+      {
+        "task_id": "HumanEval/142",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          9,
+          30
+        ],
+        "dropped_positions": [
+          15,
+          23
+        ]
+      },
+      {
+        "task_id": "HumanEval/32",
+        "intersection": 0,
+        "jaccard": 0.0,
+        "new_positions": [
+          111,
+          141,
+          151,
+          167,
+          169
+        ],
+        "dropped_positions": [
+          39,
+          64,
+          199,
+          208,
+          213
+        ]
+      },
+      {
+        "task_id": "HumanEval/137",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          15,
+          18
+        ],
+        "dropped_positions": [
+          30,
+          33
+        ]
+      },
+      {
+        "task_id": "HumanEval/33",
+        "intersection": 4,
+        "jaccard": 0.6666666666666666,
+        "new_positions": [
+          25
+        ],
+        "dropped_positions": [
+          182
+        ]
+      },
+      {
+        "task_id": "HumanEval/65",
+        "intersection": 4,
+        "jaccard": 0.6666666666666666,
+        "new_positions": [
+          13
+        ],
+        "dropped_positions": [
+          14
+        ]
+      },
+      {
+        "task_id": "HumanEval/95",
+        "intersection": 3,
+        "jaccard": 0.42857142857142855,
+        "new_positions": [
+          17,
+          44
+        ],
+        "dropped_positions": [
+          31,
+          50
+        ]
+      }
+    ]
+  },
+  "changed_branches": {
+    "new_only": 27,
+    "new_only_passes": 4,
+    "dropped": 33,
+    "dropped_passes": 2
+  },
+  "shift": {
+    "all": {
+      "n": 679,
+      "rate": 0.4117647058823529
+    },
+    "selected": {
+      "n": 15,
+      "rate": 0.15,
+      "passes": 4
+    },
+    "metric_changes": {
+      "aligned_persistence": {
+        "mean_delta": -0.24428028005954022,
+        "median_delta": 0.0,
+        "changed_fraction": 0.4117647058823529,
+        "mean_delta_shift_detected": -0.5932521087160263,
+        "mean_delta_no_shift": 0.0
+      },
+      "aligned_weighted_divergence": {
+        "mean_delta": -0.13360484270126477,
+        "median_delta": -0.057692307692307765,
+        "changed_fraction": 0.9363250454821104,
+        "mean_delta_shift_detected": -0.29405764829181624,
+        "mean_delta_no_shift": -0.02128787878787877
+      }
+    }
+  },
+  "correlations": {
+    "aligned_vs_old_score_spearman": 0.8970837472348882,
+    "aligned_vs_entropy_spearman": 0.1948438777918463,
+    "aligned_vs_margin_spearman": -0.19479687153974617
+  }
+}

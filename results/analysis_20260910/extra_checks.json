@@ -1,0 +1,134 @@
+{
+  "ordered_pair_mismatches": [
+    {
+      "task_id": "HumanEval/141",
+      "position": 32,
+      "forced_rank": 1,
+      "saved_pair_matches_same_run": true
+    },
+    {
+      "task_id": "HumanEval/38",
+      "position": 87,
+      "forced_rank": 3,
+      "saved_pair_matches_same_run": false
+    },
+    {
+      "task_id": "HumanEval/95",
+      "position": 43,
+      "forced_rank": 2,
+      "saved_pair_matches_same_run": false
+    }
+  ],
+  "short_by_selector": {
+    "Aleatorio": {
+      "n_short": 3,
+      "short_passes": 0
+    },
+    "Entropía": {
+      "n_short": 1,
+      "short_passes": 0
+    },
+    "Margen": {
+      "n_short": 1,
+      "short_passes": 0
+    },
+    "Semántico": {
+      "n_short": 3,
+      "short_passes": 0
+    }
+  },
+  "shift_threshold_sensitivity": [
+    {
+      "mismatch_min": 0.75,
+      "edit_max": 0.25,
+      "n": 310,
+      "fraction": 0.1879927228623408
+    },
+    {
+      "mismatch_min": 0.8,
+      "edit_max": 0.3,
+      "n": 309,
+      "fraction": 0.1873862947240752
+    },
+    {
+      "mismatch_min": 0.9,
+      "edit_max": 0.3,
+      "n": 308,
+      "fraction": 0.18677986658580958
+    },
+    {
+      "mismatch_min": 0.8,
+      "edit_max": 0.4,
+      "n": 394,
+      "fraction": 0.23893268647665253
+    }
+  ],
+  "independent_metric_verification": {
+    "positions": 1649,
+    "max_edit_error": 0.0,
+    "max_mismatch_error": 0.0,
+    "max_persistence_error": 0.0
+  },
+  "length_adjusted_logit": [
+    {
+      "dataset": "HumanEval",
+      "feature": "mean_entropy",
+      "odds_ratio_per_sd": 2.0113792962748063,
+      "wald95": [
+        1.2926400653140313,
+        3.1297549735935917
+      ],
+      "p_wald": 0.0019489477797200497,
+      "gradient_max": 9.605952133728834e-08,
+      "n": 164,
+      "failures": 25,
+      "sd": 0.03170370456087543,
+      "p_holm_4": 0.007795791118880199
+    },
+    {
+      "dataset": "HumanEval",
+      "feature": "min_margin",
+      "odds_ratio_per_sd": 0.4612326385675351,
+      "wald95": [
+        0.2248456800465172,
+        0.9461402453271892
+      ],
+      "p_wald": 0.03476960412450057,
+      "gradient_max": 4.938759726826017e-09,
+      "n": 164,
+      "failures": 25,
+      "sd": 0.5052848888693346,
+      "p_holm_4": 0.06836952717114038
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "mean_entropy",
+      "odds_ratio_per_sd": 3.397487144719488,
+      "wald95": [
+        1.445709811201675,
+        7.984257151121979
+      ],
+      "p_wald": 0.005023284026705743,
+      "gradient_max": 8.215722287954736e-09,
+      "n": 100,
+      "failures": 15,
+      "sd": 0.0893261284674527,
+      "p_holm_4": 0.015069852080117229
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "min_margin",
+      "odds_ratio_per_sd": 0.2575535401137654,
+      "wald95": [
+        0.07339290598484902,
+        0.9038179526346416
+      ],
+      "p_wald": 0.03418476358557019,
+      "gradient_max": 1.1590906188411326e-09,
+      "n": 100,
+      "failures": 15,
+      "sd": 0.20447306516629843,
+      "p_holm_4": 0.06836952717114038
+    }
+  ]
+}

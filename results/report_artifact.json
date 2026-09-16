@@ -1,0 +1,538 @@
+{
+  "surface": "report",
+  "manifest": {
+    "version": 1,
+    "surface": "report",
+    "title": "¿Dónde conviene bifurcar una generación de código?",
+    "description": "Reporte explicado del experimento Ghost Prompt sobre branching adaptativo bajo presupuesto.",
+    "generatedAt": "2026-07-30T20:10:00-03:00",
+    "sources": [
+      {
+        "id": "frozen-validation",
+        "label": "Checkpoint de validación congelada",
+        "path": "frozen_selector_validation_checkpoint.zip"
+      },
+      {
+        "id": "development-pilot",
+        "label": "Piloto exhaustivo y lookahead en HumanEval/26",
+        "path": "semantic_lookahead_pilot_humaneval_26.zip"
+      },
+      {
+        "id": "implementation",
+        "label": "Implementación reproducible de Kaggle",
+        "path": "kaggle_frozen_selector_validation_cell.py"
+      }
+    ],
+    "cards": [
+      {
+        "id": "cohort-card",
+        "dataset": "headline",
+        "sourceId": "frozen-validation",
+        "description": "Problemas nuevos incluidos en la validación, todos con baseline fallido.",
+        "metrics": [
+          {
+            "label": "Problemas evaluados",
+            "field": "problems",
+            "format": "number"
+          },
+          {
+            "label": "Baselines escaneados",
+            "field": "baselines_scanned",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "semantic-card",
+        "dataset": "headline",
+        "sourceId": "frozen-validation",
+        "description": "Problemas recuperados por lookahead semántico dentro de cinco ramas.",
+        "metrics": [
+          {
+            "label": "Semántico top-5",
+            "field": "semantic_top5",
+            "format": "number"
+          },
+          {
+            "label": "Entropía top-5",
+            "field": "entropy_top5",
+            "format": "number"
+          }
+        ]
+      },
+      {
+        "id": "random-card",
+        "dataset": "headline",
+        "sourceId": "frozen-validation",
+        "description": "Control con cinco posiciones pseudoaleatorias por problema.",
+        "metrics": [
+          {
+            "label": "Aleatorio top-5",
+            "field": "random_top5",
+            "format": "number"
+          },
+          {
+            "label": "Brecha semántico",
+            "field": "semantic_random_gap",
+            "format": "number",
+            "signed": true
+          }
+        ]
+      },
+      {
+        "id": "branches-card",
+        "dataset": "headline",
+        "sourceId": "frozen-validation",
+        "description": "Ramas únicas generadas después de deduplicar las selecciones de las cuatro políticas.",
+        "metrics": [
+          {
+            "label": "Ramas completas",
+            "field": "full_branches",
+            "format": "number"
+          },
+          {
+            "label": "Lookaheads",
+            "field": "lookaheads",
+            "format": "compact"
+          }
+        ]
+      }
+    ],
+    "charts": [
+      {
+        "id": "budget-chart",
+        "title": "Problemas recuperados según presupuesto",
+        "subtitle": "Veinte problemas baseline-fail; cada serie usa el mismo máximo de ramas completas.",
+        "showDescription": true,
+        "type": "line",
+        "dataset": "budget_curve",
+        "sourceId": "frozen-validation",
+        "encodings": {
+          "x": {
+            "field": "budget",
+            "type": "ordinal",
+            "label": "Ramas permitidas"
+          },
+          "y": {
+            "field": "recovered",
+            "type": "quantitative",
+            "label": "Problemas recuperados",
+            "format": "number"
+          },
+          "color": {
+            "field": "selector",
+            "type": "nominal",
+            "label": "Política"
+          },
+          "tooltip": [
+            {
+              "field": "selector",
+              "type": "text",
+              "label": "Política"
+            },
+            {
+              "field": "budget",
+              "type": "ordinal",
+              "label": "Presupuesto"
+            },
+            {
+              "field": "recovered",
+              "type": "quantitative",
+              "label": "Recuperados"
+            },
+            {
+              "field": "recovery_rate",
+              "type": "quantitative",
+              "label": "Tasa",
+              "format": "percent"
+            }
+          ]
+        },
+        "xAxisTitle": "Ramas permitidas por problema",
+        "yAxisTitle": "Problemas recuperados",
+        "layout": "full"
+      },
+      {
+        "id": "branch-success-chart",
+        "title": "Ramas correctas dentro de top-5",
+        "subtitle": "Cada política seleccionó 100 ramas nominales: cinco en cada uno de veinte problemas.",
+        "showDescription": true,
+        "type": "bar",
+        "dataset": "selector_summary",
+        "sourceId": "frozen-validation",
+        "encodings": {
+          "x": {
+            "field": "selector",
+            "type": "nominal",
+            "label": "Política"
+          },
+          "y": {
+            "field": "passing_branches",
+            "type": "quantitative",
+            "label": "Ramas correctas",
+            "format": "number"
+          },
+          "tooltip": [
+            {
+              "field": "recovered_problems",
+              "type": "quantitative",
+              "label": "Problemas recuperados"
+            },
+            {
+              "field": "passing_branches",
+              "type": "quantitative",
+              "label": "Ramas correctas"
+            },
+            {
+              "field": "position_overlap_with_entropy",
+              "type": "quantitative",
+              "label": "Coincidencia con entropía"
+            }
+          ]
+        },
+        "xAxisTitle": "Política",
+        "yAxisTitle": "Ramas correctas de 100",
+        "layout": "full"
+      }
+    ],
+    "tables": [
+      {
+        "id": "problems-table",
+        "title": "Recuperación por problema y política",
+        "subtitle": "Sí significa que al menos una de las cinco ramas seleccionadas pasó los tests base.",
+        "showDescription": true,
+        "dataset": "problems",
+        "sourceId": "frozen-validation",
+        "defaultSort": {
+          "field": "problem_number",
+          "direction": "asc"
+        },
+        "density": "dense",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "problem_number",
+            "label": "Nº",
+            "format": "number"
+          },
+          {
+            "field": "task_id",
+            "label": "Problema",
+            "type": "text"
+          },
+          {
+            "field": "semantic",
+            "label": "Semántico",
+            "type": "text"
+          },
+          {
+            "field": "entropy",
+            "label": "Entropía",
+            "type": "text"
+          },
+          {
+            "field": "margin",
+            "label": "Margen",
+            "type": "text"
+          },
+          {
+            "field": "random",
+            "label": "Aleatorio",
+            "type": "text"
+          },
+          {
+            "field": "reading",
+            "label": "Lectura",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "id": "stages-table",
+        "title": "Evolución del programa experimental",
+        "subtitle": "Cada etapa responde una pregunta distinta y restringe la afirmación siguiente.",
+        "showDescription": true,
+        "dataset": "stages",
+        "sourceId": "development-pilot",
+        "defaultSort": {
+          "field": "stage",
+          "direction": "asc"
+        },
+        "density": "spacious",
+        "layout": "full",
+        "columns": [
+          {
+            "field": "stage",
+            "label": "Etapa",
+            "format": "number"
+          },
+          {
+            "field": "experiment",
+            "label": "Experimento",
+            "type": "text"
+          },
+          {
+            "field": "result",
+            "label": "Resultado",
+            "type": "text"
+          },
+          {
+            "field": "decision",
+            "label": "Decisión",
+            "type": "text"
+          }
+        ]
+      }
+    ],
+    "blocks": [
+      {
+        "id": "title",
+        "type": "markdown",
+        "body": "# ¿Dónde conviene bifurcar una generación de código?",
+        "layout": "full"
+      },
+      {
+        "id": "executive-summary",
+        "type": "markdown",
+        "sourceId": "frozen-validation",
+        "body": "## Executive Summary\n\n- **La intervención funciona como mecanismo.** Cambiar un solo token por la segunda opción del modelo produjo programas correctos donde el greedy baseline fallaba.\n- **La incertidumbre local no basta.** Entropía y margen no identificaron los mejores puntos en el problema de desarrollo.\n- **La validación independiente no demostró superioridad.** Con cinco ramas, lookahead semántico, entropía y margen recuperaron 10 de 20 problemas; el control aleatorio recuperó 6.\n- **La señal sí es complementaria.** Semántico recuperó HumanEval/121, que entropía no encontró; entropía recuperó HumanEval/95, que semántico no encontró. El próximo paso debería usar la señal para diversificar una política híbrida, no para reemplazar entropía.",
+        "layout": "full"
+      },
+      {
+        "id": "headline-metrics",
+        "type": "metric-strip",
+        "cardIds": [
+          "cohort-card",
+          "semantic-card",
+          "random-card",
+          "branches-card"
+        ],
+        "layout": "full"
+      },
+      {
+        "id": "mental-model",
+        "type": "markdown",
+        "body": "## La idea explicada desde cero\n\nUn modelo de código no escribe una función completa de una vez. En cada paso calcula probabilidades para muchos **tokens**: palabras, operadores, signos o espacios. La generación *greedy* elige siempre el token más probable, llamado **top-1**.\n\n**Bifurcar** significa conservar todo lo generado hasta una posición, reemplazar allí top-1 por **top-2** -la segunda opción- y dejar que el modelo continúe. Una rama puede corregir una decisión, pero generar ramas desde todas las posiciones es caro.\n\nLa pregunta de investigación es concreta: **si sólo se pueden pagar cinco ramas completas, en qué cinco posiciones conviene intervenir?**\n\n### Glosario mínimo\n\n- **Entropía:** cuán repartida está la probabilidad entre muchas opciones. Alta entropía significa más incertidumbre.\n- **Margen:** diferencia entre las probabilidades de top-1 y top-2. Un margen pequeño indica que están cerca.\n- **Lookahead:** continuación corta y barata usada para observar hacia dónde conduce una decisión.\n- **Recuperación:** el baseline falla y al menos una rama alternativa pasa los tests.\n- **Presupuesto top-k:** cantidad máxima de ramas completas permitidas por problema.",
+        "layout": "full"
+      },
+      {
+        "id": "experiment-evolution",
+        "type": "markdown",
+        "body": "## De una recuperación causal a una política de selección\n\nEl proyecto comenzó con un solo problema, HumanEval/26, siguiendo la recomendación de probar primero el mecanismo. El baseline interpretó mal la consigna. Al forzar top-2 en las 49 posiciones elegibles aparecieron tres soluciones correctas: dos reinicios tempranos hacia `Counter` y una reparación local hacia `numbers.count(number) == 1`.\n\nLa entropía y el margen no encontraron ninguna de esas recuperaciones dentro de top-5. Esto motivó el lookahead semántico: forzar top-2, generar sólo 12 tokens y medir si la trayectoria cambia de forma persistente y relacionada con código.\n\nLa tabla resume qué se aprendió en cada etapa.",
+        "layout": "full"
+      },
+      {
+        "id": "stages-evidence",
+        "type": "table",
+        "tableId": "stages-table",
+        "layout": "full"
+      },
+      {
+        "id": "budget-finding",
+        "type": "markdown",
+        "sourceId": "frozen-validation",
+        "body": "## Entropía gana con poco presupuesto y empata en top-5\n\n**La señal semántica no supera al baseline principal.** Entropía recupera 8 problemas con una rama y 10 con dos. El lookahead semántico recupera 5 con una rama, 7 con dos y necesita cinco para alcanzar 10.\n\nLa visual siguiente muestra la cantidad acumulada de problemas recuperados al aumentar el presupuesto. El denominador es siempre la misma cohorte de veinte problemas baseline-fail.",
+        "layout": "full"
+      },
+      {
+        "id": "budget-evidence",
+        "type": "chart",
+        "chartId": "budget-chart",
+        "layout": "full"
+      },
+      {
+        "id": "branch-quality-finding",
+        "type": "markdown",
+        "sourceId": "frozen-validation",
+        "body": "## El empate por problema oculta una menor densidad de ramas correctas\n\nSemántico, entropía y margen recuperan diez problemas en top-5. Sin embargo, entre sus 100 ramas nominales, semántico obtiene 15 ramas correctas y entropía o margen obtienen 21.\n\n**Implicación:** en la versión actual, el costo extra del lookahead no compra más soluciones y tampoco concentra mejor las ramas correctas. Su valor potencial está en encontrar trayectorias distintas, no en sustituir la incertidumbre.",
+        "layout": "full"
+      },
+      {
+        "id": "branch-quality-evidence",
+        "type": "chart",
+        "chartId": "branch-success-chart",
+        "layout": "full"
+      },
+      {
+        "id": "problem-finding",
+        "type": "markdown",
+        "sourceId": "frozen-validation",
+        "body": "## Las políticas empatan en total, pero no en identidad\n\nNueve problemas son recuperados por semántico y entropía. HumanEval/121 aparece únicamente con semántico; HumanEval/95, únicamente con entropía y margen. Sólo 34 de las 100 posiciones semánticas coinciden con entropía.\n\nEsta complementariedad es el hallazgo que justifica continuar. No prueba una mejora a presupuesto constante, pero sugiere que la divergencia de trayectoria podría servir para evitar ramas redundantes dentro de una política híbrida.",
+        "layout": "full"
+      },
+      {
+        "id": "problem-evidence",
+        "type": "table",
+        "tableId": "problems-table",
+        "layout": "full"
+      },
+      {
+        "id": "integrity",
+        "type": "markdown",
+        "sourceId": "frozen-validation",
+        "body": "## La corrida está completa y las discrepancias no cambian el resultado\n\nEl checkpoint contiene 141 baselines, 1.649 lookaheads y 255 ramas completas únicas. La unión de posiciones seleccionadas también suma exactamente 255; no hay tareas incompletas ni duplicadas.\n\nDos parejas top-1/top-2 cambiaron al repetir la pasada por pequeñas diferencias numéricas. Ninguna posición fue seleccionada ni produjo una recuperación. También se detectó un desempate afectado por diferencias de punto flotante del orden de `10^-16`; cambió posiciones fallidas, no las tasas agregadas.\n\n**Corrección necesaria:** representar el score como suma de rangos enteros o cuantizarlo antes del desempate.",
+        "layout": "full"
+      },
+      {
+        "id": "code-explained",
+        "type": "markdown",
+        "sourceId": "implementation",
+        "body": "## Código explicado: de la bifurcación al ranking\n\n### 1. Forzar top-2 y mirar doce tokens\n\n```python\nprefix_ids = baseline_ids[:position]\nforced_id = baseline_trace[position][\"top2_id\"]\n\nbranch_window = generate_short_forced_rollout(\n    model=model,\n    tokenizer=tokenizer,\n    prompt=prompt,\n    prefix_ids=prefix_ids,\n    forced_token_id=forced_id,\n    rollout_tokens=12,\n)\n\nbaseline_window = baseline_ids[position:position + 12]\n```\n\nEl prefijo no cambia. Sólo se reemplaza la decisión en `position`. La rama todavía no se completa: se observan doce tokens para estimar si el cambio merece presupuesto.\n\n### 2. Medir persistencia\n\n```python\ndef persistence_after_forced(baseline_ids, branch_ids):\n    compared = max(len(baseline_ids), len(branch_ids)) - 1\n    mismatches = 0\n\n    for index in range(1, max(len(baseline_ids), len(branch_ids))):\n        left = baseline_ids[index] if index < len(baseline_ids) else None\n        right = branch_ids[index] if index < len(branch_ids) else None\n        mismatches += left != right\n\n    return mismatches / max(compared, 1)\n```\n\nSe ignora el primer token porque fue forzado y necesariamente difiere. Una bifurcación que vuelve enseguida a la trayectoria original recibe menor persistencia.\n\n### 3. Diferenciar código de cambios cosméticos\n\n```python\nif both_are_whitespace:\n    weight = 0.0\nelif both_are_identifiers:\n    weight = 0.20\nelif whitespace_is_involved:\n    weight = 0.25\nelif keyword_operator_or_literal_is_involved:\n    weight = 1.0\nelse:\n    weight = 0.50\n```\n\nLa heurística reduce el valor de espacios o renombres y aumenta el de operadores, keywords y literales. Además se comparan *anchors*: llamadas, métodos, operadores y números.\n\n### 4. Combinar sin usar tests\n\n```python\nsemantic_score = mean([\n    percentile_rank(persistence),\n    percentile_rank(weighted_semantic_divergence),\n    percentile_rank(anchor_score),\n])\n\nselected_positions = top_k(\n    rows,\n    field=\"semantic_score\",\n    k=5,\n)\n\n# Los tests se ejecutan recién después.\nfor position in selected_positions:\n    branch = generate_full_branch(position)\n    passed = run_tests(branch)\n```\n\nLa separación temporal es esencial: si el resultado de los tests influyera en el ranking, existiría fuga de información.\n\n### 5. Corrección para la próxima versión\n\n```python\nrank_sum = (\n    integer_rank_persistence\n    + integer_rank_semantic\n    + integer_rank_anchors\n)\n\nselected = sorted(points, key=lambda point: (\n    point.rank_sum,\n    stable_hash(task_id, point.position),\n))[:5]\n```\n\nUsar rangos enteros evita que errores minúsculos de punto flotante decidan un empate.",
+        "layout": "full"
+      },
+      {
+        "id": "next-steps",
+        "type": "markdown",
+        "body": "## Próximos pasos recomendados\n\n1. **Ejecutar HumanEval+.** Las diez recuperaciones actuales usan tests base y podrían contener falsos positivos funcionales.\n2. **Corregir el ranking final.** Sumar rangos enteros y conservar un desempate determinista independiente de la posición.\n3. **Congelar una política híbrida.** Elegir primero por incertidumbre y usar divergencia de trayectoria para penalizar candidatos redundantes hasta completar cinco ramas.\n4. **Separar tipos de recuperación.** Etiquetar reinicios tempranos, reparaciones locales, cambios superficiales y terminaciones.\n5. **Replicar externamente.** Probar un segundo modelo de tamaño similar y HumanEval+ o MBPP+ con el mismo presupuesto.\n\nLa hipótesis siguiente debería ser: **la divergencia de trayectoria mejora la diversidad útil de un conjunto de ramas seleccionado bajo presupuesto**, no que reemplaza directamente a la entropía.",
+        "layout": "full"
+      },
+      {
+        "id": "questions",
+        "type": "markdown",
+        "body": "## Preguntas que todavía pueden cambiar la decisión\n\n- ¿Las diez recuperaciones sobreviven HumanEval+?\n- ¿El lookahead ayuda más en reparaciones locales que en reinicios tempranos?\n- ¿Doce tokens son suficientes o existe otra longitud costo-efectiva?\n- ¿Una política secuencial de entropía más diversidad supera a entropía top-5?\n- ¿El efecto se mantiene con otro modelo y otro tokenizador?\n- ¿La unidad de presupuesto correcta es cantidad de ramas, tokens generados o segundos de GPU?",
+        "layout": "full"
+      },
+      {
+        "id": "caveats",
+        "type": "markdown",
+        "body": "## Caveats y supuestos\n\n- HumanEval/26 fue usado para diseñar las características; sus resultados son prueba de mecanismo, no validación.\n- La cohorte final contiene solamente problemas donde el greedy baseline falla.\n- HumanEval/120 fue excluido por no tener cinco posiciones con horizonte completo.\n- Las posiciones dentro de un programa no son observaciones independientes.\n- Entropía y margen son casi redundantes en este modelo.\n- Parte de las recuperaciones son reinicios tempranos, no reparaciones locales.\n- El selector semántico usa heurísticas léxicas y no una representación formal completa del programa.\n- La ejecución de código generado requiere aislamiento, límites de tiempo y una evaluación reforzada antes de compartir resultados externos.",
+        "layout": "full"
+      },
+      {
+        "id": "conclusion",
+        "type": "markdown",
+        "body": "## Conclusión\n\nEl trabajo ya produjo una intervención causal reproducible, una señal online de bajo costo y una validación independiente a presupuesto controlado. También produjo un resultado negativo claro: **el selector semántico actual no supera a entropía**.\n\nLa contribución potencial se encuentra ahora en otro lugar. Semántico y entropía empatan en cantidad total, pero no recuperan exactamente los mismos problemas. La línea plausible es estudiar **diversidad de trayectorias bajo presupuesto** y demostrar que una política híbrida convierte esa complementariedad en más soluciones correctas sin aumentar el costo.",
+        "layout": "full"
+      }
+    ]
+  },
+  "snapshot": {
+    "version": 1,
+    "generatedAt": "2026-07-30T20:10:00-03:00",
+    "status": "ready",
+    "datasets": {
+      "headline": [
+        {
+          "problems": 20,
+          "baselines_scanned": 141,
+          "semantic_top5": 10,
+          "entropy_top5": 10,
+          "random_top5": 6,
+          "semantic_random_gap": 4,
+          "full_branches": 255,
+          "lookaheads": 1649
+        }
+      ],
+      "budget_curve": [
+        {"budget": 1, "selector": "Lookahead semántico", "recovered": 5, "recovery_rate": 0.25, "cohort_size": 20, "nominal_branches": 20},
+        {"budget": 1, "selector": "Entropía", "recovered": 8, "recovery_rate": 0.40, "cohort_size": 20, "nominal_branches": 20},
+        {"budget": 1, "selector": "Margen", "recovered": 6, "recovery_rate": 0.30, "cohort_size": 20, "nominal_branches": 20},
+        {"budget": 1, "selector": "Aleatorio", "recovered": 4, "recovery_rate": 0.20, "cohort_size": 20, "nominal_branches": 20},
+        {"budget": 2, "selector": "Lookahead semántico", "recovered": 7, "recovery_rate": 0.35, "cohort_size": 20, "nominal_branches": 40},
+        {"budget": 2, "selector": "Entropía", "recovered": 10, "recovery_rate": 0.50, "cohort_size": 20, "nominal_branches": 40},
+        {"budget": 2, "selector": "Margen", "recovered": 8, "recovery_rate": 0.40, "cohort_size": 20, "nominal_branches": 40},
+        {"budget": 2, "selector": "Aleatorio", "recovered": 5, "recovery_rate": 0.25, "cohort_size": 20, "nominal_branches": 40},
+        {"budget": 3, "selector": "Lookahead semántico", "recovered": 7, "recovery_rate": 0.35, "cohort_size": 20, "nominal_branches": 60},
+        {"budget": 3, "selector": "Entropía", "recovered": 10, "recovery_rate": 0.50, "cohort_size": 20, "nominal_branches": 60},
+        {"budget": 3, "selector": "Margen", "recovered": 10, "recovery_rate": 0.50, "cohort_size": 20, "nominal_branches": 60},
+        {"budget": 3, "selector": "Aleatorio", "recovered": 6, "recovery_rate": 0.30, "cohort_size": 20, "nominal_branches": 60},
+        {"budget": 4, "selector": "Lookahead semántico", "recovered": 8, "recovery_rate": 0.40, "cohort_size": 20, "nominal_branches": 80},
+        {"budget": 4, "selector": "Entropía", "recovered": 10, "recovery_rate": 0.50, "cohort_size": 20, "nominal_branches": 80},
+        {"budget": 4, "selector": "Margen", "recovered": 10, "recovery_rate": 0.50, "cohort_size": 20, "nominal_branches": 80},
+        {"budget": 4, "selector": "Aleatorio", "recovered": 6, "recovery_rate": 0.30, "cohort_size": 20, "nominal_branches": 80},
+        {"budget": 5, "selector": "Lookahead semántico", "recovered": 10, "recovery_rate": 0.50, "cohort_size": 20, "nominal_branches": 100},
+        {"budget": 5, "selector": "Entropía", "recovered": 10, "recovery_rate": 0.50, "cohort_size": 20, "nominal_branches": 100},
+        {"budget": 5, "selector": "Margen", "recovered": 10, "recovery_rate": 0.50, "cohort_size": 20, "nominal_branches": 100},
+        {"budget": 5, "selector": "Aleatorio", "recovered": 6, "recovery_rate": 0.30, "cohort_size": 20, "nominal_branches": 100}
+      ],
+      "selector_summary": [
+        {"selector": "Lookahead semántico", "recovered_problems": 10, "problem_recovery_rate": 0.50, "passing_branches": 15, "nominal_branches": 100, "position_overlap_with_entropy": 34, "mcnemar_vs_semantic": null},
+        {"selector": "Entropía", "recovered_problems": 10, "problem_recovery_rate": 0.50, "passing_branches": 21, "nominal_branches": 100, "position_overlap_with_entropy": 100, "mcnemar_vs_semantic": 1.0},
+        {"selector": "Margen", "recovered_problems": 10, "problem_recovery_rate": 0.50, "passing_branches": 21, "nominal_branches": 100, "position_overlap_with_entropy": 93, "mcnemar_vs_semantic": 1.0},
+        {"selector": "Aleatorio", "recovered_problems": 6, "problem_recovery_rate": 0.30, "passing_branches": 7, "nominal_branches": 100, "position_overlap_with_entropy": 14, "mcnemar_vs_semantic": 0.21875}
+      ],
+      "problems": [
+        {"problem_number": 140, "task_id": "HumanEval/140", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "Sí", "reading": "Robusto a la política"},
+        {"problem_number": 93, "task_id": "HumanEval/93", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 10, "task_id": "HumanEval/10", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 77, "task_id": "HumanEval/77", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "Sí", "reading": "Robusto a la política"},
+        {"problem_number": 141, "task_id": "HumanEval/141", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "No", "reading": "Tres políticas"},
+        {"problem_number": 154, "task_id": "HumanEval/154", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "No", "reading": "Tres políticas"},
+        {"problem_number": 50, "task_id": "HumanEval/50", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 145, "task_id": "HumanEval/145", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 163, "task_id": "HumanEval/163", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 81, "task_id": "HumanEval/81", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "No", "reading": "Tres políticas"},
+        {"problem_number": 130, "task_id": "HumanEval/130", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 121, "task_id": "HumanEval/121", "semantic": "Sí", "entropy": "No", "margin": "No", "random": "No", "reading": "Sólo semántico"},
+        {"problem_number": 38, "task_id": "HumanEval/38", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 127, "task_id": "HumanEval/127", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 142, "task_id": "HumanEval/142", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "No", "reading": "Tres políticas"},
+        {"problem_number": 32, "task_id": "HumanEval/32", "semantic": "No", "entropy": "No", "margin": "No", "random": "No", "reading": "Sin recuperación"},
+        {"problem_number": 137, "task_id": "HumanEval/137", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "Sí", "reading": "Robusto a la política"},
+        {"problem_number": 33, "task_id": "HumanEval/33", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "Sí", "reading": "Robusto a la política"},
+        {"problem_number": 65, "task_id": "HumanEval/65", "semantic": "Sí", "entropy": "Sí", "margin": "Sí", "random": "Sí", "reading": "Robusto a la política"},
+        {"problem_number": 95, "task_id": "HumanEval/95", "semantic": "No", "entropy": "Sí", "margin": "Sí", "random": "Sí", "reading": "Sólo incertidumbre"}
+      ],
+      "stages": [
+        {"stage": 1, "experiment": "Branching exhaustivo en HumanEval/26", "result": "3 recuperaciones de 49 posiciones", "decision": "El mecanismo es viable"},
+        {"stage": 2, "experiment": "Entropía y margen", "result": "0 recuperaciones en top-5", "decision": "La incertidumbre local no basta"},
+        {"stage": 3, "experiment": "Lookahead semántico en HumanEval/26", "result": "2 recuperaciones en top-5; 3 en top-10", "decision": "Validar sin ajustar la señal"},
+        {"stage": 4, "experiment": "Protocolo congelado en 20 problemas nuevos", "result": "Semántico 10/20; entropía 10/20", "decision": "Complementariedad, no superioridad"}
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "frozen-validation",
+      "label": "Checkpoint de validación congelada",
+      "path": "frozen_selector_validation_checkpoint.zip",
+      "query": {
+        "engine": "duckdb",
+        "sql": "SELECT task_id, position, selected_by, passed, semantic_lookahead_score, entropy, probability_margin FROM read_json_auto('frozen_selector_validation/branches.jsonl', format = 'newline_delimited')",
+        "description": "Carga las ramas contrafactuales completas de la validación congelada para contar recuperaciones y comparar selectores bajo el mismo presupuesto.",
+        "filters": [
+          "20 tareas elegibles de HumanEval",
+          "baseline greedy fallido",
+          "protocolo congelado antes de evaluar"
+        ],
+        "metric_definitions": [
+          "Recuperación: una rama que fuerza top-2 en una sola posición pasa todos los tests mientras el baseline greedy falla.",
+          "Hallazgo con presupuesto k: un selector incluye al menos una rama recuperadora entre sus primeras k posiciones para el problema."
+        ],
+        "tables_used": [
+          "frozen_selector_validation/branches.jsonl",
+          "frozen_selector_validation/selections.jsonl",
+          "frozen_selector_validation/baselines.jsonl",
+          "frozen_selector_validation/lookaheads.jsonl"
+        ]
+      }
+    },
+    {
+      "id": "development-pilot",
+      "label": "Piloto exhaustivo y lookahead en HumanEval/26",
+      "path": "semantic_lookahead_pilot_humaneval_26.zip",
+      "query": {
+        "engine": "duckdb",
+        "sql": "SELECT task_id, position, top2_passed, normalized_edit_distance, persistence_after_forced, weighted_semantic_divergence, anchor_score FROM read_json_auto('semantic_lookahead_pilot/short_rollouts.jsonl', format = 'newline_delimited')",
+        "description": "Carga los lookaheads cortos del problema de desarrollo HumanEval/26 usados para construir el selector semántico.",
+        "filters": [
+          "HumanEval/26",
+          "una única sustitución top-1 por top-2",
+          "continuación greedy congelada"
+        ],
+        "metric_definitions": [
+          "Top-2 passed: la rama contrafactual pasa los tests de HumanEval.",
+          "Anchor score: componente estructural usado junto con divergencia y persistencia para ordenar posiciones."
+        ],
+        "tables_used": [
+          "semantic_lookahead_pilot/short_rollouts.jsonl"
+        ]
+      }
+    },
+    {
+      "id": "implementation",
+      "label": "Implementación reproducible de Kaggle",
+      "path": "kaggle_frozen_selector_validation_cell.py"
+    }
+  ]
+}

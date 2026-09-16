@@ -1,0 +1,146 @@
+[
+  {
+    "delta": 0.2,
+    "discordance": 0.3,
+    "n": 20,
+    "power": 0.19583333333333333
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.3,
+    "n": 40,
+    "power": 0.5664666666666667
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.3,
+    "n": 60,
+    "power": 0.7972333333333333
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.3,
+    "n": 80,
+    "power": 0.9087666666666666
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.3,
+    "n": 100,
+    "power": 0.9633
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.3,
+    "n": 150,
+    "power": 0.9971
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.3,
+    "n": 200,
+    "power": 0.9998666666666667
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.3,
+    "n": 300,
+    "power": 0.9999666666666667
+  },
+  {
+    "delta": 0.1,
+    "discordance": 0.3,
+    "n": 20,
+    "power": 0.04356666666666666
+  },
+  {
+    "delta": 0.1,
+    "discordance": 0.3,
+    "n": 40,
+    "power": 0.1326
+  },
+  {
+    "delta": 0.1,
+    "discordance": 0.3,
+    "n": 60,
+    "power": 0.22256666666666666
+  },
+  {
+    "delta": 0.1,
+    "discordance": 0.3,
+    "n": 80,
+    "power": 0.29573333333333335
+  },
+  {
+    "delta": 0.1,
+    "discordance": 0.3,
+    "n": 100,
+    "power": 0.37083333333333335
+  },
+  {
+    "delta": 0.1,
+    "discordance": 0.3,
+    "n": 150,
+    "power": 0.5655
+  },
+  {
+    "delta": 0.1,
+    "discordance": 0.3,
+    "n": 200,
+    "power": 0.7013666666666667
+  },
+  {
+    "delta": 0.1,
+    "discordance": 0.3,
+    "n": 300,
+    "power": 0.8724
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.5,
+    "n": 20,
+    "power": 0.15063333333333334
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.5,
+    "n": 40,
+    "power": 0.35063333333333335
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.5,
+    "n": 60,
+    "power": 0.5275
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.5,
+    "n": 80,
+    "power": 0.682
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.5,
+    "n": 100,
+    "power": 0.7895666666666666
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.5,
+    "n": 150,
+    "power": 0.9319
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.5,
+    "n": 200,
+    "power": 0.9795333333333334
+  },
+  {
+    "delta": 0.2,
+    "discordance": 0.5,
+    "n": 300,
+    "power": 0.9983333333333333
+  }
+]

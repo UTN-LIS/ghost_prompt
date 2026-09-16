@@ -1,0 +1,16 @@
+{
+  "drive_retrieved_on": "2026-09-10",
+  "original_files": {
+    "baselines.jsonl": "27175c85cf228971aa493a84d7b6e999ac46cf5ba1623f44605e0c7bac357701",
+    "branches.jsonl": "4edddc2d899cbc9b711b14fac1e6ea2f959d85e3bc0be0ebe64f115e168e4dae",
+    "lookaheads.jsonl": "ff4d59d5af92f0654ebe232d45564df3227a261783c52ed9242c56132904a04a",
+    "selections.jsonl": "e2c1b2d83f7a74116cf73e913bb292179b8fba8f342c35cdd83b222744f3951f",
+    "metadata.json": "5493debe047297376d00982b116c30f441b5c631417f793a052bd0615b5a3ef0",
+    "validation_report.json": "b270e69c12c6b79e1887cc6d60947a5acddf153bdc60aa395de14a28e4ba6bec"
+  },
+  "analysis_snapshots": {
+    "source_branching.txt": "6df410a328507087b2e0c362a8abd158c9be42e1765ad1b68108ada2a6e6415b",
+    "source_previous.txt": "6c5a955979966c56defc7710222d5e72ed81686a529e7dd061dadeb173d5a957",
+    "source_bitacora.txt": "1d139967bca6b665a81addec3cf46ded73f933efee4dba614d092bc751fc3d74"
+  }
+}

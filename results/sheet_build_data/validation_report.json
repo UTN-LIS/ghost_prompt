@@ -1,0 +1,152 @@
+{
+  "status": "complete",
+  "config": {
+    "protocol_version": 1,
+    "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+    "development_task_excluded": "HumanEval/26",
+    "target_baseline_failures": 20,
+    "branch_budget": 5,
+    "lookahead_tokens": 12,
+    "edge_buffer": 2,
+    "max_new_tokens": 256,
+    "test_timeout_s": 12,
+    "cohort_seed": 20260730,
+    "random_control_seed": 42026,
+    "selectors": [
+      "semantic_lookahead",
+      "entropy",
+      "probability_margin",
+      "random"
+    ],
+    "semantic_components": [
+      "persistence_after_forced",
+      "weighted_semantic_divergence",
+      "anchor_score"
+    ],
+    "semantic_weights": [
+      0.3333333333333333,
+      0.3333333333333333,
+      0.3333333333333333
+    ],
+    "tie_break_rule": "seeded_sha256_of_task_selector_position",
+    "selection_uses_tests": false
+  },
+  "baseline_failures_selected": [
+    "HumanEval/140",
+    "HumanEval/93",
+    "HumanEval/10",
+    "HumanEval/77",
+    "HumanEval/141",
+    "HumanEval/154",
+    "HumanEval/50",
+    "HumanEval/145",
+    "HumanEval/163",
+    "HumanEval/81",
+    "HumanEval/130",
+    "HumanEval/121",
+    "HumanEval/38",
+    "HumanEval/127",
+    "HumanEval/142",
+    "HumanEval/32",
+    "HumanEval/137",
+    "HumanEval/33",
+    "HumanEval/65",
+    "HumanEval/95"
+  ],
+  "complete_task_ids": [
+    "HumanEval/140",
+    "HumanEval/93",
+    "HumanEval/10",
+    "HumanEval/77",
+    "HumanEval/141",
+    "HumanEval/154",
+    "HumanEval/50",
+    "HumanEval/145",
+    "HumanEval/163",
+    "HumanEval/81",
+    "HumanEval/130",
+    "HumanEval/121",
+    "HumanEval/38",
+    "HumanEval/127",
+    "HumanEval/142",
+    "HumanEval/32",
+    "HumanEval/137",
+    "HumanEval/33",
+    "HumanEval/65",
+    "HumanEval/95"
+  ],
+  "complete_tasks": 20,
+  "selector_results_on_base_humaneval_tests": {
+    "semantic_lookahead": {
+      "complete_tasks": 20,
+      "recovered_tasks": 10,
+      "recovery_rate": 0.5,
+      "wilson_95_interval": [
+        0.2992980081982123,
+        0.7007019918017877
+      ],
+      "nominal_evaluated_branches": 100
+    },
+    "entropy": {
+      "complete_tasks": 20,
+      "recovered_tasks": 10,
+      "recovery_rate": 0.5,
+      "wilson_95_interval": [
+        0.2992980081982123,
+        0.7007019918017877
+      ],
+      "nominal_evaluated_branches": 100
+    },
+    "probability_margin": {
+      "complete_tasks": 20,
+      "recovered_tasks": 10,
+      "recovery_rate": 0.5,
+      "wilson_95_interval": [
+        0.2992980081982123,
+        0.7007019918017877
+      ],
+      "nominal_evaluated_branches": 100
+    },
+    "random": {
+      "complete_tasks": 20,
+      "recovered_tasks": 6,
+      "recovery_rate": 0.3,
+      "wilson_95_interval": [
+        0.1454772448676043,
+        0.5189728183535235
+      ],
+      "nominal_evaluated_branches": 100
+    }
+  },
+  "paired_problem_level_comparisons": {
+    "semantic_vs_entropy": {
+      "semantic_only": 1,
+      "comparator_only": 1,
+      "both": 9,
+      "neither": 9,
+      "exact_mcnemar_two_sided_p": 1.0
+    },
+    "semantic_vs_probability_margin": {
+      "semantic_only": 1,
+      "comparator_only": 1,
+      "both": 9,
+      "neither": 9,
+      "exact_mcnemar_two_sided_p": 1.0
+    },
+    "semantic_vs_random": {
+      "semantic_only": 5,
+      "comparator_only": 1,
+      "both": 5,
+      "neither": 9,
+      "exact_mcnemar_two_sided_p": 0.21875
+    }
+  },
+  "unique_full_branches_evaluated": 255,
+  "all_saved_pairs_reproduced": false,
+  "interpretation_limits": [
+    "HumanEval/26 was excluded because it was used for feature design.",
+    "The in-notebook pass/fail result uses base HumanEval tests.",
+    "Run the exported samples with EvalPlus before publication.",
+    "Statistical tests are descriptive with only 20 problems."
+  ]
+}

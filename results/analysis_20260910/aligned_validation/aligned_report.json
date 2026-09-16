@@ -1,0 +1,47 @@
+{
+  "status": "complete",
+  "model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "tasks": 20,
+  "branch_budget_per_task": 5,
+  "lookahead_tokens_total": 12,
+  "continuation_tokens_aligned": 11,
+  "alignment": "unit-cost Levenshtein over continuation tokens; forced token excluded",
+  "semantic_components": [
+    "aligned_persistence",
+    "aligned_weighted_divergence",
+    "anchor_score"
+  ],
+  "recovered_tasks": 10,
+  "recovery_rate": 0.5,
+  "wilson_95_interval": [
+    0.2992980081982123,
+    0.7007019918017877
+  ],
+  "total_lookahead_positions": 1649,
+  "shift_affected_positions": 679,
+  "shift_affected_rate": 0.4117647058823529,
+  "selected_shift_affected_positions": 15,
+  "mean_top5_overlap_with_old_selector": 3.35,
+  "task_results": {
+    "HumanEval/140": true,
+    "HumanEval/93": false,
+    "HumanEval/10": false,
+    "HumanEval/77": true,
+    "HumanEval/141": true,
+    "HumanEval/154": true,
+    "HumanEval/50": false,
+    "HumanEval/145": false,
+    "HumanEval/163": false,
+    "HumanEval/81": true,
+    "HumanEval/130": false,
+    "HumanEval/121": true,
+    "HumanEval/38": false,
+    "HumanEval/127": false,
+    "HumanEval/142": true,
+    "HumanEval/32": false,
+    "HumanEval/137": true,
+    "HumanEval/33": true,
+    "HumanEval/65": true,
+    "HumanEval/95": false
+  }
+}

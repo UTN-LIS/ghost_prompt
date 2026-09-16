@@ -1,0 +1,239 @@
+{
+  "purpose": "Descriptive ordered-position analysis; generation position is not physical time.",
+  "sources": {
+    "lookaheads": "/Users/matiask/Documents/programacion/LIS/ghost_prompt/results/analysis_20260910/../sheet_build_data/lookaheads.jsonl",
+    "branches": "/Users/matiask/Documents/programacion/LIS/ghost_prompt/results/analysis_20260910/../sheet_build_data/branches.jsonl"
+  },
+  "seed": 20260916,
+  "permutations": 2000,
+  "bootstrap_resamples": 4000,
+  "population": {
+    "lookahead_windows": 1649,
+    "unique_evaluated_branches": 255,
+    "passing_branches": 29,
+    "failing_branches": 226,
+    "tasks": 20,
+    "position_range": [
+      2,
+      244
+    ]
+  },
+  "all_window_temporal_structure": {
+    "persistence_after_forced": {
+      "label": "persistencia",
+      "rows": 1649,
+      "observed_positions": 243,
+      "missing_positions": 0,
+      "spectrum": {
+        "linear_slope_per_position": -0.0005382373461103738,
+        "autocorrelation_lags_1_to_10": [
+          -0.22720753148988795,
+          0.04586874548942399,
+          0.006872084380086586,
+          -0.10705652313873629,
+          0.133055083562097,
+          -0.11072009360773098,
+          0.1318247160859995,
+          -0.07531541124740074,
+          0.10243446237345025,
+          -0.09110401688047567
+        ],
+        "top_peaks": [
+          {
+            "bin": 108,
+            "frequency_cycles_per_position": 0.4444444444444445,
+            "period_positions": 2.25,
+            "relative_power": 0.06399737601308385
+          },
+          {
+            "bin": 100,
+            "frequency_cycles_per_position": 0.411522633744856,
+            "period_positions": 2.4299999999999997,
+            "relative_power": 0.04505933589463305
+          },
+          {
+            "bin": 104,
+            "frequency_cycles_per_position": 0.42798353909465026,
+            "period_positions": 2.3365384615384612,
+            "relative_power": 0.038034737418388635
+          },
+          {
+            "bin": 78,
+            "frequency_cycles_per_position": 0.3209876543209877,
+            "period_positions": 3.115384615384615,
+            "relative_power": 0.028521710856062477
+          },
+          {
+            "bin": 56,
+            "frequency_cycles_per_position": 0.23045267489711935,
+            "period_positions": 4.339285714285714,
+            "relative_power": 0.022837161253383472
+          }
+        ],
+        "max_relative_power": 0.06399737601308385
+      },
+      "within_task_permutation_p_for_largest_peak": 0.044977511244377814
+    },
+    "weighted_semantic_divergence": {
+      "label": "divergencia semántica ponderada",
+      "rows": 1649,
+      "observed_positions": 243,
+      "missing_positions": 0,
+      "spectrum": {
+        "linear_slope_per_position": -6.243846118957511e-05,
+        "autocorrelation_lags_1_to_10": [
+          -0.08410311826533923,
+          0.13799968752319947,
+          0.04236932231152021,
+          0.010639558663751712,
+          0.10411574115019698,
+          -0.007785547102050469,
+          0.08816918897768075,
+          0.020810424954981876,
+          0.13074485414434164,
+          -0.09816498322882741
+        ],
+        "top_peaks": [
+          {
+            "bin": 108,
+            "frequency_cycles_per_position": 0.4444444444444445,
+            "period_positions": 2.25,
+            "relative_power": 0.04879190296221982
+          },
+          {
+            "bin": 5,
+            "frequency_cycles_per_position": 0.020576131687242802,
+            "period_positions": 48.599999999999994,
+            "relative_power": 0.04563982654446755
+          },
+          {
+            "bin": 78,
+            "frequency_cycles_per_position": 0.3209876543209877,
+            "period_positions": 3.115384615384615,
+            "relative_power": 0.03384477379193889
+          },
+          {
+            "bin": 11,
+            "frequency_cycles_per_position": 0.04526748971193416,
+            "period_positions": 22.09090909090909,
+            "relative_power": 0.02454168752447652
+          },
+          {
+            "bin": 1,
+            "frequency_cycles_per_position": 0.00411522633744856,
+            "period_positions": 242.99999999999997,
+            "relative_power": 0.021427013945271717
+          }
+        ],
+        "max_relative_power": 0.04879190296221982
+      },
+      "within_task_permutation_p_for_largest_peak": 0.2653673163418291
+    },
+    "anchor_score": {
+      "label": "anchor score",
+      "rows": 1649,
+      "observed_positions": 243,
+      "missing_positions": 0,
+      "spectrum": {
+        "linear_slope_per_position": -0.0002921642568407923,
+        "autocorrelation_lags_1_to_10": [
+          0.15834291439803505,
+          0.23558376025614813,
+          0.10677282801085516,
+          0.11492634470496259,
+          0.04031302873145442,
+          0.08088210818850097,
+          0.00219138949386836,
+          0.04655089830374352,
+          0.03714419098199331,
+          -0.03557982758225215
+        ],
+        "top_peaks": [
+          {
+            "bin": 3,
+            "frequency_cycles_per_position": 0.01234567901234568,
+            "period_positions": 81.0,
+            "relative_power": 0.0638397480423966
+          },
+          {
+            "bin": 13,
+            "frequency_cycles_per_position": 0.05349794238683128,
+            "period_positions": 18.69230769230769,
+            "relative_power": 0.06161591742902713
+          },
+          {
+            "bin": 9,
+            "frequency_cycles_per_position": 0.03703703703703704,
+            "period_positions": 26.999999999999996,
+            "relative_power": 0.04785997780891911
+          },
+          {
+            "bin": 117,
+            "frequency_cycles_per_position": 0.4814814814814815,
+            "period_positions": 2.0769230769230766,
+            "relative_power": 0.028873118591662812
+          },
+          {
+            "bin": 31,
+            "frequency_cycles_per_position": 0.12757201646090535,
+            "period_positions": 7.838709677419355,
+            "relative_power": 0.026350751983812853
+          }
+        ],
+        "max_relative_power": 0.0638397480423966
+      },
+      "within_task_permutation_p_for_largest_peak": 0.044977511244377814
+    }
+  },
+  "pass_fail_comparison": {
+    "entropy": {
+      "label": "entropía",
+      "pass_mean": 0.6762673993601169,
+      "fail_mean": 0.2580705533669383,
+      "pass_minus_fail": 0.41819684599317863,
+      "task_bootstrap_95_ci": [
+        0.2328986665887257,
+        0.6517108529099769
+      ],
+      "within_task_label_permutation_p": 0.0004997501249375312
+    },
+    "probability_margin": {
+      "label": "margen top-1/top-2",
+      "pass_mean": 0.5766243288292823,
+      "fail_mean": 0.8216184246484272,
+      "pass_minus_fail": -0.24499409581914489,
+      "task_bootstrap_95_ci": [
+        -0.38921795677574567,
+        -0.12195651460074529
+      ],
+      "within_task_label_permutation_p": 0.0004997501249375312
+    },
+    "semantic_lookahead_score": {
+      "label": "score semántico original",
+      "pass_mean": 0.7403869785644208,
+      "fail_mean": 0.5939902454343613,
+      "pass_minus_fail": 0.14639673313005952,
+      "task_bootstrap_95_ci": [
+        0.0872282369775863,
+        0.19575860768617892
+      ],
+      "within_task_label_permutation_p": 0.0009995002498750624
+    }
+  },
+  "relative_phase_pass_fail": {
+    "pass_mean": 0.40880032961790225,
+    "fail_mean": 0.5227781716090265,
+    "pass_minus_fail": -0.11397784199112426,
+    "task_bootstrap_95_ci": [
+      -0.22205808537332014,
+      -0.0020374849768744524
+    ],
+    "within_task_label_permutation_p": 0.017491254372813594
+  },
+  "limitations": [
+    "PASS/FAIL labels exist only for positions selected by one or more policies; this is not a random sample of all positions.",
+    "Absolute position mixes tasks with different lengths and code structure; relative position is a secondary normalization.",
+    "The FFT interpolates missing aggregate positions only to form an equally spaced diagnostic series.",
+    "Permutation p-values are robustness checks conditional on this cohort and selection process, not confirmatory population inference."
+  ]
+}

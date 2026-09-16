@@ -1,0 +1,266 @@
+{
+  "unique_branches": 255,
+  "unique_passing_branches": 29,
+  "tasks": 20,
+  "tasks_recovered_by_any_selected": 11,
+  "detection_groups": {
+    "shared": 9,
+    "neither_selected": 9,
+    "semantic_only": 1,
+    "entropy_only": 1
+  },
+  "baseline_error_by_recovery": {
+    "0": {
+      "AssertionError": 4,
+      "IndexError": 1,
+      "NameError": 4,
+      "Other": 0,
+      "SyntaxError": 0,
+      "TypeError": 0
+    },
+    "1": {
+      "AssertionError": 8,
+      "IndexError": 0,
+      "NameError": 0,
+      "Other": 1,
+      "SyntaxError": 1,
+      "TypeError": 1
+    }
+  },
+  "top_passing_transitions": [
+    {
+      "transition": "identifier→keyword",
+      "evaluated": 13,
+      "passing": 6,
+      "tasks": 9,
+      "pass_rate": 0.46153846153846156
+    },
+    {
+      "transition": "identifier→identifier",
+      "evaluated": 49,
+      "passing": 4,
+      "tasks": 20,
+      "pass_rate": 0.08163265306122448
+    },
+    {
+      "transition": "keyword→keyword",
+      "evaluated": 15,
+      "passing": 4,
+      "tasks": 11,
+      "pass_rate": 0.26666666666666666
+    },
+    {
+      "transition": "operator_or_punct→operator_or_punct",
+      "evaluated": 45,
+      "passing": 3,
+      "tasks": 18,
+      "pass_rate": 0.06666666666666667
+    },
+    {
+      "transition": "mixed→mixed",
+      "evaluated": 15,
+      "passing": 3,
+      "tasks": 11,
+      "pass_rate": 0.2
+    },
+    {
+      "transition": "operator_or_punct→identifier",
+      "evaluated": 8,
+      "passing": 2,
+      "tasks": 5,
+      "pass_rate": 0.25
+    },
+    {
+      "transition": "literal→identifier",
+      "evaluated": 3,
+      "passing": 2,
+      "tasks": 3,
+      "pass_rate": 0.6666666666666666
+    },
+    {
+      "transition": "whitespace→whitespace",
+      "evaluated": 17,
+      "passing": 1,
+      "tasks": 14,
+      "pass_rate": 0.058823529411764705
+    },
+    {
+      "transition": "keyword→identifier",
+      "evaluated": 15,
+      "passing": 1,
+      "tasks": 13,
+      "pass_rate": 0.06666666666666667
+    },
+    {
+      "transition": "operator_or_punct→keyword",
+      "evaluated": 4,
+      "passing": 1,
+      "tasks": 2,
+      "pass_rate": 0.25
+    },
+    {
+      "transition": "keyword→mixed",
+      "evaluated": 1,
+      "passing": 1,
+      "tasks": 1,
+      "pass_rate": 1.0
+    },
+    {
+      "transition": "literal→whitespace",
+      "evaluated": 1,
+      "passing": 1,
+      "tasks": 1,
+      "pass_rate": 1.0
+    }
+  ],
+  "position_bands": [
+    {
+      "position_band": "early",
+      "evaluated": 84,
+      "passing": 15,
+      "tasks": 20,
+      "pass_rate": 0.17857142857142858
+    },
+    {
+      "position_band": "early_mid",
+      "evaluated": 78,
+      "passing": 10,
+      "tasks": 20,
+      "pass_rate": 0.1282051282051282
+    },
+    {
+      "position_band": "late",
+      "evaluated": 27,
+      "passing": 2,
+      "tasks": 11,
+      "pass_rate": 0.07407407407407407
+    },
+    {
+      "position_band": "late_mid",
+      "evaluated": 66,
+      "passing": 2,
+      "tasks": 16,
+      "pass_rate": 0.030303030303030304
+    }
+  ],
+  "metric_comparison": [
+    {
+      "metric": "position_ratio",
+      "pass_median": 0.24,
+      "fail_median": 0.43316430020283975,
+      "pass_mean": 0.2930189812464232,
+      "fail_mean": 0.4288639725771623,
+      "univariate_auc_pass_high": 0.33330790357033874,
+      "cliffs_delta": -0.3333841928593225
+    },
+    {
+      "metric": "entropy",
+      "pass_median": 0.6559587717056274,
+      "fail_median": 0.004677207209169865,
+      "pass_mean": 0.6762673993601169,
+      "fail_mean": 0.2580705533669383,
+      "univariate_auc_pass_high": 0.7660970399755874,
+      "cliffs_delta": 0.5321940799511748
+    },
+    {
+      "metric": "probability_margin",
+      "pass_median": 0.584469273686409,
+      "fail_median": 0.9990345338592306,
+      "pass_mean": 0.5766243288292823,
+      "fail_mean": 0.8216184246484272,
+      "univariate_auc_pass_high": 0.24870308208727496,
+      "cliffs_delta": -0.50259383582545
+    },
+    {
+      "metric": "semantic_score",
+      "pass_median": 0.7923211169284468,
+      "fail_median": 0.6758145363408521,
+      "pass_mean": 0.7403869785644208,
+      "fail_mean": 0.5939902454343613,
+      "univariate_auc_pass_high": 0.6623436069575832,
+      "cliffs_delta": 0.3246872139151664
+    },
+    {
+      "metric": "persistence",
+      "pass_median": 1.0,
+      "fail_median": 1.0,
+      "pass_mean": 0.9435736677115989,
+      "fail_mean": 0.7220434432823812,
+      "univariate_auc_pass_high": 0.606957583155325,
+      "cliffs_delta": 0.21391516631065
+    },
+    {
+      "metric": "semantic_divergence",
+      "pass_median": 0.5583333333333333,
+      "fail_median": 0.49583333333333335,
+      "pass_mean": 0.5472701149425288,
+      "fail_mean": 0.42070427728613574,
+      "univariate_auc_pass_high": 0.6277845590479096,
+      "cliffs_delta": 0.2555691180958193
+    },
+    {
+      "metric": "anchor_score",
+      "pass_median": 0.5123152709359605,
+      "fail_median": 0.3718711505296871,
+      "pass_mean": 0.5770997851902223,
+      "fail_mean": 0.41883424769250693,
+      "univariate_auc_pass_high": 0.6357949343912115,
+      "cliffs_delta": 0.27158986878242297
+    },
+    {
+      "metric": "edit_distance",
+      "pass_median": 0.9166666666666666,
+      "fail_median": 0.625,
+      "pass_mean": 0.7327586206896551,
+      "fail_mean": 0.5630530973451328,
+      "univariate_auc_pass_high": 0.6305309734513275,
+      "cliffs_delta": 0.26106194690265494
+    }
+  ],
+  "problem_families": [
+    {
+      "family_heuristic": "numeric",
+      "problems": 8,
+      "recovered": 4,
+      "recovery_rate": 0.5
+    },
+    {
+      "family_heuristic": "strings",
+      "problems": 8,
+      "recovered": 4,
+      "recovery_rate": 0.5
+    },
+    {
+      "family_heuristic": "lists",
+      "problems": 4,
+      "recovered": 3,
+      "recovery_rate": 0.75
+    }
+  ],
+  "passing_tasks": [
+    "HumanEval/121",
+    "HumanEval/137",
+    "HumanEval/140",
+    "HumanEval/141",
+    "HumanEval/142",
+    "HumanEval/154",
+    "HumanEval/33",
+    "HumanEval/65",
+    "HumanEval/77",
+    "HumanEval/81",
+    "HumanEval/95"
+  ],
+  "passing_branch_count_by_task": {
+    "HumanEval/142": 4,
+    "HumanEval/33": 4,
+    "HumanEval/77": 4,
+    "HumanEval/65": 3,
+    "HumanEval/81": 3,
+    "HumanEval/137": 2,
+    "HumanEval/140": 2,
+    "HumanEval/141": 2,
+    "HumanEval/154": 2,
+    "HumanEval/95": 2,
+    "HumanEval/121": 1
+  }
+}

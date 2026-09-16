@@ -1,0 +1,264 @@
+{
+  "semantic_lookahead": {
+    "1": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142"
+    ],
+    "2": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/33",
+      "HumanEval/65"
+    ],
+    "3": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/33",
+      "HumanEval/65"
+    ],
+    "4": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/121",
+      "HumanEval/142",
+      "HumanEval/33",
+      "HumanEval/65"
+    ],
+    "5": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/121",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65"
+    ]
+  },
+  "entropy": {
+    "1": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/95"
+    ],
+    "2": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "3": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "4": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "5": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ]
+  },
+  "probability_margin": {
+    "1": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33"
+    ],
+    "2": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33"
+    ],
+    "3": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "4": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "5": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ]
+  },
+  "random": {
+    "1": [
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "2": [
+      "HumanEval/140",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "3": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "4": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "5": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ]
+  },
+  "hybrid_50_50": {
+    "1": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "2": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "3": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "4": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ],
+    "5": [
+      "HumanEval/140",
+      "HumanEval/77",
+      "HumanEval/141",
+      "HumanEval/154",
+      "HumanEval/81",
+      "HumanEval/142",
+      "HumanEval/137",
+      "HumanEval/33",
+      "HumanEval/65",
+      "HumanEval/95"
+    ]
+  }
+}

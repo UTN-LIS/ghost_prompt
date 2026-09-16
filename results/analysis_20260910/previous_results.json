@@ -1,0 +1,350 @@
+{
+  "summary": [
+    {
+      "dataset": "HumanEval",
+      "n": 164,
+      "tasks": 164,
+      "passed": 139,
+      "rate": 0.8475609756097561,
+      "wilson95": [
+        0.7846483514233873,
+        0.8945640481887178
+      ],
+      "duplicates": 0,
+      "error_types": {
+        "none": 139,
+        "RuntimeError": 25
+      },
+      "model_names": "not recorded in sheet",
+      "missing_metrics": {
+        "mean_entropy": 0,
+        "max_entropy": 0,
+        "mean_margin": 0,
+        "min_margin": 0,
+        "output_tokens": 0,
+        "gen_time_s": 0,
+        "entropy_std": 0,
+        "code_lines": 0
+      }
+    },
+    {
+      "dataset": "MBPP",
+      "n": 100,
+      "tasks": 100,
+      "passed": 85,
+      "rate": 0.85,
+      "wilson95": [
+        0.7671644040916763,
+        0.9069401471634337
+      ],
+      "duplicates": 0,
+      "error_types": {
+        "none": 85,
+        "RuntimeError": 15
+      },
+      "model_names": [
+        "Qwen/Qwen2.5-Coder-7B-Instruct"
+      ],
+      "missing_metrics": {
+        "mean_entropy": 0,
+        "max_entropy": 0,
+        "mean_margin": 0,
+        "min_margin": 0,
+        "output_tokens": 0,
+        "gen_time_s": 0,
+        "entropy_std": 0,
+        "code_lines": 0
+      }
+    }
+  ],
+  "associations": [
+    {
+      "dataset": "HumanEval",
+      "feature": "mean_entropy",
+      "n": 164,
+      "mean_pass": 0.08055714530629085,
+      "mean_fail": 0.0993209697006124,
+      "median_pass": 0.075292046152116,
+      "median_fail": 0.091646674482796,
+      "auc_high_predicts_failure": 0.663884892086331,
+      "auc_bootstrap95": [
+        0.5471099323212,
+        0.7779845951728628
+      ],
+      "rank_biserial": 0.3277697841726619,
+      "p_mannwhitney": 0.009239685758277164,
+      "spearman_failure": 0.20406624477295293,
+      "q_bh_16": 0.041394972680611444
+    },
+    {
+      "dataset": "HumanEval",
+      "feature": "max_entropy",
+      "n": 164,
+      "mean_pass": 1.053363604511286,
+      "mean_fail": 1.1967497730255088,
+      "median_pass": 0.963280320167541,
+      "median_fail": 1.07970321178436,
+      "auc_high_predicts_failure": 0.6198561151079137,
+      "auc_bootstrap95": [
+        0.510223540440504,
+        0.7221721142974612
+      ],
+      "rank_biserial": 0.23971223021582744,
+      "p_mannwhitney": 0.05702580131903043,
+      "spearman_failure": 0.1492424775205178,
+      "q_bh_16": 0.10508032529266981
+    },
+    {
+      "dataset": "HumanEval",
+      "feature": "mean_margin",
+      "n": 164,
+      "mean_pass": 9.33574479643308,
+      "mean_fail": 8.626664270577232,
+      "median_pass": 9.48737404081556,
+      "median_fail": 8.81710858677708,
+      "auc_high_predicts_failure": 0.30158273381294964,
+      "auc_bootstrap95": [
+        0.19565293631232036,
+        0.4155551323054642
+      ],
+      "rank_biserial": -0.3968345323741007,
+      "p_mannwhitney": 0.0016213910588233878,
+      "spearman_failure": -0.24706527791211771,
+      "q_bh_16": 0.025942256941174205
+    },
+    {
+      "dataset": "HumanEval",
+      "feature": "min_margin",
+      "n": 164,
+      "mean_pass": 0.5955076972357649,
+      "mean_fail": 0.296079406738281,
+      "median_pass": 0.441762924194335,
+      "median_fail": 0.224431991577148,
+      "auc_high_predicts_failure": 0.33611510791366905,
+      "auc_bootstrap95": [
+        0.2325865800865801,
+        0.4444657290332907
+      ],
+      "rank_biserial": -0.3277697841726619,
+      "p_mannwhitney": 0.009236345959398713,
+      "spearman_failure": -0.2040759611886657,
+      "q_bh_16": 0.041394972680611444
+    },
+    {
+      "dataset": "HumanEval",
+      "feature": "output_tokens",
+      "n": 164,
+      "mean_pass": 63.34532374100719,
+      "mean_fail": 86.96,
+      "median_pass": 59.0,
+      "median_fail": 66.0,
+      "auc_high_predicts_failure": 0.5981294964028777,
+      "auc_bootstrap95": [
+        0.4674631049214454,
+        0.7219707722729366
+      ],
+      "rank_biserial": 0.19625899280575543,
+      "p_mannwhitney": 0.119256543486784,
+      "spearman_failure": 0.12220346549515138,
+      "q_bh_16": 0.173464063253504
+    },
+    {
+      "dataset": "HumanEval",
+      "feature": "gen_time_s",
+      "n": 164,
+      "mean_pass": 4.311165698158265,
+      "mean_fail": 5.988323823919973,
+      "median_pass": 3.98684722500001,
+      "median_fail": 4.510616389,
+      "auc_high_predicts_failure": 0.601726618705036,
+      "auc_bootstrap95": [
+        0.47547184860807007,
+        0.7223235935260391
+      ],
+      "rank_biserial": 0.20345323741007193,
+      "p_mannwhitney": 0.10633209671632261,
+      "spearman_failure": 0.12666798512245628,
+      "q_bh_16": 0.17013135474611618
+    },
+    {
+      "dataset": "HumanEval",
+      "feature": "entropy_std",
+      "n": 164,
+      "mean_pass": 0.21024383556590934,
+      "mean_fail": 0.23452121940887502,
+      "median_pass": 0.206510313554265,
+      "median_fail": 0.218239374792331,
+      "auc_high_predicts_failure": 0.6210071942446043,
+      "auc_bootstrap95": [
+        0.5133868735431235,
+        0.7199016530732949
+      ],
+      "rank_biserial": 0.24201438848920853,
+      "p_mannwhitney": 0.05467976562988232,
+      "spearman_failure": 0.15067577862515663,
+      "q_bh_16": 0.10508032529266981
+    },
+    {
+      "dataset": "HumanEval",
+      "feature": "code_lines",
+      "n": 164,
+      "mean_pass": 7.100719424460432,
+      "mean_fail": 8.04,
+      "median_pass": 7.0,
+      "median_fail": 6.0,
+      "auc_high_predicts_failure": 0.5306474820143885,
+      "auc_bootstrap95": [
+        0.41309086746586743,
+        0.6494607859364345
+      ],
+      "rank_biserial": 0.06129496402877699,
+      "p_mannwhitney": 0.624058369043125,
+      "spearman_failure": 0.03856919861043786,
+      "q_bh_16": 0.624058369043125
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "mean_entropy",
+      "n": 100,
+      "mean_pass": 0.171800980632518,
+      "mean_fail": 0.20130387171297,
+      "median_pass": 0.165048151012353,
+      "median_fail": 0.194283933048975,
+      "auc_high_predicts_failure": 0.5803921568627451,
+      "auc_bootstrap95": [
+        0.4102343059239611,
+        0.7489092558983667
+      ],
+      "rank_biserial": 0.1607843137254903,
+      "p_mannwhitney": 0.32480367384327,
+      "spearman_failure": 0.09944457861813936,
+      "q_bh_16": 0.3712041986780229
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "max_entropy",
+      "n": 100,
+      "mean_pass": 1.4791325555128174,
+      "mean_fail": 1.7800542195637978,
+      "median_pass": 1.4679570198059,
+      "median_fail": 1.71636652946472,
+      "auc_high_predicts_failure": 0.6784313725490196,
+      "auc_bootstrap95": [
+        0.5357045807453416,
+        0.8056478405315615
+      ],
+      "rank_biserial": 0.3568627450980393,
+      "p_mannwhitney": 0.02843050523984576,
+      "spearman_failure": 0.22071845498172396,
+      "q_bh_16": 0.09097761676750643
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "mean_margin",
+      "n": 100,
+      "mean_pass": 7.821598796391595,
+      "mean_fail": 7.406283033548212,
+      "median_pass": 7.67684690413936,
+      "median_fail": 7.33605026684219,
+      "auc_high_predicts_failure": 0.44,
+      "auc_bootstrap95": [
+        0.25634904845611667,
+        0.634326504433638
+      ],
+      "rank_biserial": -0.12,
+      "p_mannwhitney": 0.46316257951376616,
+      "spearman_failure": -0.07421961233451375,
+      "q_bh_16": 0.4940400848146839
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "min_margin",
+      "n": 100,
+      "mean_pass": 0.23003003737505728,
+      "mean_fail": 0.10018959045410156,
+      "median_pass": 0.171875,
+      "median_fail": 0.078125,
+      "auc_high_predicts_failure": 0.29137254901960785,
+      "auc_bootstrap95": [
+        0.18064553340716133,
+        0.41619437883043925
+      ],
+      "rank_biserial": -0.4172549019607843,
+      "p_mannwhitney": 0.010348743170152861,
+      "spearman_failure": -0.25817230071213043,
+      "q_bh_16": 0.041394972680611444
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "output_tokens",
+      "n": 100,
+      "mean_pass": 80.12941176470588,
+      "mean_fail": 108.73333333333333,
+      "median_pass": 64.0,
+      "median_fail": 103.0,
+      "auc_high_predicts_failure": 0.6537254901960784,
+      "auc_bootstrap95": [
+        0.4702245670995671,
+        0.8187557727832513
+      ],
+      "rank_biserial": 0.3074509803921568,
+      "p_mannwhitney": 0.05910768297712677,
+      "spearman_failure": 0.1901751270163721,
+      "q_bh_16": 0.10508032529266981
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "gen_time_s",
+      "n": 100,
+      "mean_pass": 34.148833706435255,
+      "mean_fail": 46.318701683133646,
+      "median_pass": 27.2043674899996,
+      "median_fail": 43.938691192,
+      "auc_high_predicts_failure": 0.6549019607843137,
+      "auc_bootstrap95": [
+        0.4786197916666667,
+        0.8233833327314749
+      ],
+      "rank_biserial": 0.30980392156862746,
+      "p_mannwhitney": 0.05721092234120358,
+      "spearman_failure": 0.19161272465446366,
+      "q_bh_16": 0.10508032529266981
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "entropy_std",
+      "n": 100,
+      "mean_pass": 0.32628198361110733,
+      "mean_fail": 0.35412483766952846,
+      "median_pass": 0.305978271399914,
+      "median_fail": 0.334972942955125,
+      "auc_high_predicts_failure": 0.5850980392156863,
+      "auc_bootstrap95": [
+        0.4310520939734423,
+        0.739595076259947
+      ],
+      "rank_biserial": 0.17019607843137252,
+      "p_mannwhitney": 0.29715485844530987,
+      "spearman_failure": 0.10526572468359141,
+      "q_bh_16": 0.3712041986780229
+    },
+    {
+      "dataset": "MBPP",
+      "feature": "code_lines",
+      "n": 100,
+      "mean_pass": 7.894117647058824,
+      "mean_fail": 9.333333333333334,
+      "median_pass": 7.0,
+      "median_fail": 10.0,
+      "auc_high_predicts_failure": 0.5827450980392157,
+      "auc_bootstrap95": [
+        0.41402876848413783,
+        0.7400332225913622
+      ],
+      "rank_biserial": 0.1654901960784314,
+      "p_mannwhitney": 0.3081273300416191,
+      "spearman_failure": 0.10291712576117402,
+      "q_bh_16": 0.3712041986780229
+    }
+  ]
+}
