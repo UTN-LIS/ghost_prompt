@@ -20,11 +20,16 @@ node_modules
 # Artefactos generados por la demo web de resultados
 tools/
 
+# Artefactos temporales de presentaciones
+results/presentation/.build/
+results/presentation/.chart-data-*/
+
 # Local
 src/
 tests/
 scripts/
 bitacora_ghost_prompt.txt
 markdown.txt
+pyproject.toml
 docs/kaggle_top2_pilot.md
 markdown.txt
