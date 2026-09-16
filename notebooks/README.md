@@ -13,7 +13,7 @@ Los experimentos deben ejecutarse en este orden:
 5. `05_hybrid_selector_exploratory.ipynb` — combinación 50/50 de entropía y señal semántica.
 6. `06_aligned_semantic_review.ipynb` — revisión del selector semántico con alineación de tokens.
 
-Los notebooks 5 y 6 requieren los artefactos generados por el notebook 4. El notebook 5 es exploratorio y no reemplaza la validación congelada.
+Los notebooks 5 y 6 requieren un checkpoint completo de la validación del notebook 4. El notebook 5 conserva además las definiciones de esa validación para poder verificar la compatibilidad del checkpoint, pero el ensayo híbrido sólo comienza cuando la validación original está completa. Es exploratorio y no la reemplaza.
 
 ## Ejecución
 

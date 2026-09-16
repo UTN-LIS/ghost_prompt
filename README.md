@@ -1,100 +1,83 @@
 # Ghost Prompt
 
-Experimentos de *retrieval-augmented generation* (RAG) adaptativo para generación de código. El proyecto estudia si intervenir una generación en posiciones de incertidumbre —por ejemplo, explorando la alternativa top-2— permite recuperar soluciones de HumanEval sin presentar resultados exploratorios como conclusiones definitivas.
+Repositorio de investigación sobre *branching* adaptativo durante la generación de código. Estudia si reemplazar una decisión greedy top-1 por el token top-2, en posiciones seleccionadas sin consultar los tests, puede recuperar soluciones que fallan en HumanEval.
 
-## Objetivo
+El resultado central es acotado: con hasta cinco ramas por problema, el lookahead semántico, la entropía y el margen top-1/top-2 recuperaron 10 de 20 fallos del baseline; el control aleatorio recuperó 6. La señal semántica aporta posiciones diferentes, pero esta cohorte no demuestra que supere a la entropía.
 
-El runtime principal implementa y evalúa políticas de recuperación para generación de código: baseline sin recuperación, recuperación estática, disparadores basados en entropía y una política de utilidad aprendida. El modelo generativo y los recuperadores permanecen congelados; la política aprende cuándo conviene intervenir considerando la mejora esperada y el costo.
+## Pregunta de investigación
 
-## Estructura del repositorio
+Cuando una generación greedy de código probablemente siga una trayectoria incorrecta, ¿en qué posición conviene bifurcar hacia el segundo token más probable?
+
+El protocolo compara cuatro políticas con el mismo presupuesto de ramas:
+
+| Política | Señal de selección |
+|---|---|
+| Lookahead semántico | Persistencia, divergencia ponderada y cambios estructurales en una continuación corta |
+| Entropía | Incertidumbre de la distribución del siguiente token |
+| Margen | Cercanía entre las probabilidades top-1 y top-2 |
+| Aleatoria | Control reproducible sin señal de ranking |
+
+Los tests de HumanEval se aplican únicamente después de elegir posiciones y generar las ramas completas. No participan en la selección.
+
+## Estructura
 
 ```text
 .
-├── configs/              Configuraciones reproducibles de las corridas
-├── docs/                 Protocolo, guía de Kaggle e informes interpretativos
-├── experiments/          Insumos y variantes puntuales de experimentos
-├── notebooks/            Cuadernos históricos y de ejecución end-to-end
-├── results/              Resultados, figuras, planillas y snapshots analizados
-├── scripts/
-│   ├── analysis/         Scripts de análisis y diagnósticos
-│   ├── kaggle/           Celdas/scripts para ejecutar en Kaggle
-│   └── utilities/        Utilidades para construir artefactos
-├── src/
-│   ├── ghost_prompt/     Runtime principal del proyecto
-│   └── adaptive_intervention/  Prototipo de intervención adaptativa
-├── tests/                Pruebas automatizadas
-└── tools/                Aplicaciones auxiliares, separadas del runtime Python
+├── docs/          Protocolo experimental y guía de ejecución en Kaggle
+├── experiments/   Insumos y comparaciones puntuales del experimento
+├── notebooks/     Notebooks organizados por fase experimental
+└── results/       Checkpoints, resultados, auditorías e informes
 ```
 
-### Dónde encontrar cada cosa
+## Notebooks
 
-- El flujo experimental está en [docs/experiment_protocol.md](docs/experiment_protocol.md).
-- La guía del piloto top-2 está en [docs/kaggle_top2_pilot.md](docs/kaggle_top2_pilot.md).
-- Los notebooks experimentales están organizados y documentados en [notebooks/README.md](notebooks/README.md). El notebook original se conserva en `notebooks/archive/` como referencia histórica.
-- Los resultados de validación de 20 problemas están en `results/validation_20_problems/`.
-- El análisis retrospectivo del 10 de septiembre de 2026, con tablas, figuras, scripts e informes, está en `results/analysis_20260910/`.
-- Los informes de lectura rápida están en `docs/reports/`.
+El orden y los requisitos de ejecución están documentados en [notebooks/README.md](notebooks/README.md).
 
-## Instalación
+| Notebook | Propósito |
+|---|---|
+| `01_exhaustive_top2_pilot.ipynb` | Piloto exhaustivo sobre `HumanEval/26` |
+| `02_entropy_margin_pilot.ipynb` | Comparación de entropía y margen |
+| `03_semantic_lookahead_pilot.ipynb` | Desarrollo del selector semántico |
+| `04_frozen_validation.ipynb` | Validación principal sobre 20 fallos del baseline |
+| `05_hybrid_selector_exploratory.ipynb` | Ensayo híbrido 50/50 de entropía y señal semántica |
+| `06_aligned_semantic_review.ipynb` | Revisión con alineación de tokens |
 
-Se recomienda Python 3.10 o superior.
+Los notebooks fueron preparados para Kaggle. Requieren una GPU compatible, `Qwen/Qwen2.5-Coder-7B-Instruct` y los checkpoints indicados en la documentación. Las rutas bajo `/kaggle/working/` son rutas de ejecución, no datos del repositorio.
 
-```bash
-pip install -r requirements.txt
-pip install -e .
-```
+## Resultados principales
 
-## Flujo reproducible del runtime
+La validación congelada usa 20 problemas de HumanEval en los que el baseline greedy falla, un lookahead de 12 tokens y un presupuesto máximo de cinco ramas por política.
 
-Construir un manifiesto versionado del corpus:
+| Presupuesto | Semántico | Entropía | Margen | Aleatorio |
+|---:|---:|---:|---:|---:|
+| 1 rama | 5/20 | 8/20 | 6/20 | 4/20 |
+| 2 ramas | 7/20 | 10/20 | 8/20 | 5/20 |
+| 3 ramas | 7/20 | 10/20 | 10/20 | 6/20 |
+| 4 ramas | 8/20 | 10/20 | 10/20 | 6/20 |
+| 5 ramas | 10/20 | 10/20 | 10/20 | 6/20 |
 
-```bash
-python -m ghost_prompt.cli build-corpus \
-  --input-path /ruta/al/corpus.csv \
-  --output-dir artifacts/corpora
-```
+Los artefactos y auditorías principales están en:
 
-Ejecutar un baseline de HumanEval:
+- [Protocolo experimental](docs/experiment_protocol.md)
+- [Resultados de la validación de 20 problemas](results/validation_20_problems/)
+- [Análisis y auditorías del 10 de septiembre de 2026](results/analysis_20260910/)
+- [Revisión del selector semántico alineado](results/aligned_semantic_lookahead_20260910/)
+- [Ensayo híbrido exploratorio](results/validation_hybrid_20260907/)
 
-```bash
-python -m ghost_prompt.cli run-benchmark \
-  --benchmark humaneval \
-  --policy-name baseline \
-  --config configs/paper_v1.json \
-  --num-tasks 32
-```
+## Reproducibilidad y procedencia
 
-Luego se puede comparar `static`, `entropy`, `entropy_similarity` y `utility`. Para la política aprendida, primero se recolectan contra-factuales y se entrena el estimador:
+Los resultados conservan los checkpoints, selecciones, ramas evaluadas y reportes necesarios para auditar las cifras presentadas. Las exportaciones externas, con su fuente y hash SHA-256, se documentan en [results/drive_exports/README.md](results/drive_exports/README.md).
 
-```bash
-python -m ghost_prompt.cli collect-counterfactuals \
-  --benchmark humaneval \
-  --config configs/paper_v1.json \
-  --corpus-manifest artifacts/corpora/<manifest>.json \
-  --output-file artifacts/counterfactuals/humaneval.jsonl
+Para reproducir una fase, abrir el notebook correspondiente en Kaggle, ejecutar las dependencias indicadas en su primera celda y restaurar el checkpoint requerido cuando corresponda. El notebook 04 produce el checkpoint de la validación principal; los notebooks 05 y 06 dependen de esos artefactos.
 
-python -m ghost_prompt.cli train-utility \
-  --examples-file artifacts/counterfactuals/humaneval.jsonl \
-  --output-file artifacts/checkpoints/utility.pt
-```
+## Límites
 
-Los artefactos generados durante una corrida se escriben en `artifacts/` y no se versionan: pueden ser grandes o contener datos intermedios regenerables. Los resultados consolidados que sustentan los informes sí se conservan en `results/`.
+- La cohorte es pequeña: 20 problemas y un único modelo.
+- `HumanEval/26` fue excluido de la validación principal porque se usó durante el desarrollo del selector.
+- La comparación iguala el número de ramas, no el costo total de cómputo: el lookahead semántico tiene costo adicional.
+- Los análisis de posición y Fourier son exploratorios; no justifican una regla periódica de intervención.
+- Los tests base de HumanEval se usan para evaluación offline; una publicación final debería incluir una validación independiente adicional, por ejemplo con EvalPlus.
 
-## Resultados y procedencia
+## Cita y uso
 
-Los resultados del repositorio son snapshots locales de trabajo, no una afirmación de superioridad del método. En particular, `results/analysis_20260910/` conserva las fuentes textuales, resultados JSON, figuras y el manifiesto de su análisis.
-
-Las copias descargadas de Drive, con enlaces de origen, fecha y hashes, están documentadas en [results/drive_exports/README.md](results/drive_exports/README.md). Las fuentes de Drive no se modifican desde este proyecto.
-
-## Validación local
-
-```bash
-PYTHONPYCACHEPREFIX=/tmp/ghost_prompt_pycache python3 -m py_compile $(find src -name '*.py' | sort)
-PYTHONPATH=src python3 -m unittest discover -s tests
-```
-
-## Límites actuales
-
-- Los resultados de branching son exploratorios y deben leerse junto con sus auditorías metodológicas.
-- `04_frozen_validation.ipynb` contiene la validación principal; `05_hybrid_selector_exploratory.ipynb` y `06_aligned_semantic_review.ipynb` son análisis posteriores. El runtime modular es una implementación complementaria.
-- Los scripts de Kaggle requieren preparar allí el modelo y los datos externos indicados en la guía.
+Este repositorio se publica como material de investigación exploratoria. Si reutilizás los resultados, citá el repositorio.
