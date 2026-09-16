@@ -9,6 +9,22 @@ __pycache__/
 *.csv
 *.jsonl
 *.log
-
+artifacts/
+checkpoints/
+reports/
+*.pt
+*.pth
 .DS_Store
-notebooks/
+node_modules
+
+# Artefactos generados por la demo web de resultados
+tools/
+
+# Local
+src/
+tests/
+scripts/
+bitacora_ghost_prompt.txt
+markdown.txt
+docs/kaggle_top2_pilot.md
+markdown.txt

@@ -1,0 +1,39 @@
+{
+  "model": {
+    "model_name": "Qwen/Qwen2.5-Coder-3B-Instruct",
+    "max_new_tokens": 512,
+    "load_in_8bit": true,
+    "torch_dtype": "float16",
+    "seed": 42,
+    "hidden_summary_dim": 32
+  },
+  "retrieval": {
+    "dense_model_name": "all-MiniLM-L6-v2",
+    "top_k": 3,
+    "RRF_K": 60,
+    "min_similarity": 0.25,
+    "query_suffix_chars": 160
+  },
+  "policy": {
+    "policy_name": "utility",
+    "decision_cadence_tokens": 12,
+    "entropy_threshold": 2.0,
+    "utility_threshold": 0.0,
+    "similarity_threshold": 0.3,
+    "rewind_tokens": 4,
+    "burst_tokens": 16,
+    "max_triggers": 4,
+    "cost_penalty": 0.05,
+    "include_hidden_summary": true,
+    "include_context_features": true
+  },
+  "benchmark": {
+    "benchmarks": ["humaneval", "mbpp"],
+    "split": "test",
+    "num_tasks": null
+  },
+  "output": {
+    "output_dir": "artifacts",
+    "run_name": "paper_v1"
+  }
+}

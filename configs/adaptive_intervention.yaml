@@ -1,0 +1,40 @@
+# Adaptive Capacity Allocation defaults.
+# All latency entries below are empirically measured constants in milliseconds.
+
+candidate:
+  t_min: 10
+  max_length: 256
+
+gate:
+  tau1: 0.5
+  tau2: 0.5
+  entropy_threshold: 2.5
+  w_r: 3.0
+
+retriever:
+  encoder_name: sentence-transformers/all-MiniLM-L6-v2
+  batch_size: 32
+  normalize_embeddings: true
+
+intervention:
+  max_new_tokens: 256
+  rewind_tokens: 4
+  system_prompt: You are an expert Python programmer. Return executable Python only.
+
+latency:
+  TPOT_ms: 20.0
+  t_forward_ms: 2.0
+  t_prefill_ms: 0.15
+  t_embed_ms: 1.5
+  t_search_ms: 0.2
+
+model:
+  model_name: Qwen/Qwen2.5-Coder-1.5B-Instruct
+  torch_dtype: float16
+  device_map: auto
+  load_in_8bit: false
+
+phase0:
+  n_bootstrap: 2000
+  alpha: 0.05
+  power: 0.8

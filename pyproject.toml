@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghost-prompt"
+version = "0.1.0"
+description = "Adaptive retrieval research runtime for code generation."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "accelerate>=0.26.0",
+    "bitsandbytes>=0.43.1",
+    "datasets>=2.17.0",
+    "faiss-cpu>=1.8.0",
+    "numpy>=1.24.0",
+    "pandas>=2.1.0",
+    "PyYAML>=6.0.1",
+    "rank-bm25>=0.2.2",
+    "scikit-learn>=1.3.0",
+    "scipy>=1.11.0",
+    "sentence-transformers>=2.3.1",
+    "torch>=2.1.0",
+    "tqdm>=4.66.0",
+    "transformers>=4.38.0",
+]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.unittest]
+start-directory = "tests"
